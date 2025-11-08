@@ -1,0 +1,147 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Data Modeling and Data Warehousing Tutorial Notes</title>
+    <style>
+        body { font-family: Arial, sans-serif; line-height: 1.6; margin: 20px; color: #333; }
+        h1 { color: #0056b3; border-bottom: 2px solid #0056b3; padding-bottom: 10px; }
+        h2 { color: #007bff; margin-top: 25px; border-bottom: 1px solid #ccc; padding-bottom: 5px; }
+        h3 { color: #303030; margin-top: 15px; }
+        .section-box { border: 1px solid #ddd; padding: 15px; margin-bottom: 20px; background-color: #f9f9f9; border-radius: 5px; }
+        ul { list-style-type: disc; margin-left: 20px; }
+        li { margin-bottom: 8px; }
+        .code-block { background-color: #eee; padding: 10px; border-radius: 4px; overflow-x: auto; font-family: 'Courier New', monospace; }
+        .key-term { font-weight: bold; color: #cc0000; }
+        table { width: 100%; border-collapse: collapse; margin-top: 10px; }
+        th, td { border: 1px solid #ddd; padding: 8px; text-align: left; }
+        th { background-color: #f2f2f2; }
+    </style>
+</head>
+<body>
+
+    <h1>💾 Data Modeling and Data Warehousing Tutorial Notes</h1>
+    <p>A detailed guide covering fundamental concepts for organizing data for efficient analysis and reporting.</p>
+
+    <div class="section-box">
+        <h2>1. Modeling</h2>
+        <p><strong>Data Modeling</strong> is the process of creating a structured, visual representation of data and the relationships between different data elements. It ensures data is organized for optimal storage, retrieval, and analysis.</p>
+        <ul>
+            <li><strong>Goal:</strong> Define the data structure to meet business requirements and optimize database performance.</li>
+            <li><strong>Output:</strong> A blueprint (model) used by developers and database administrators.</li>
+        </ul>
+    </div>
+
+    <div class="section-box">
+        <h2>2. Conceptual/Logical/Physical Modeling</h2>
+        <p>Data modeling progresses through three distinct stages of increasing detail:</p>
+
+        <h3>2.1. Conceptual Data Model (CDM)</h3>
+        <ul>
+            <li><strong>Focus:</strong> <span class="key-term">Business View (What).</span> Defines major entities and the relationships between them.</li>
+            <li><strong>Independence:</strong> Technology-agnostic (no data types, no tables).</li>
+            <li><strong>Example:</strong> A <code>CUSTOMER</code> entity is linked to an <code>ORDER</code> entity by a "places" relationship.</li>
+        </ul>
+
+        <h3>2.2. Logical Data Model (LDM)</h3>
+        <ul>
+            <li><strong>Focus:</strong> <span class="key-term">Structure (How).</span> Details all attributes (columns) for each entity and defines primary and foreign keys.</li>
+            <li><strong>Independence:</strong> Still independent of a specific database vendor (e.g., uses generic data types).</li>
+            <li><strong>Example:</strong> The <code>CUSTOMER</code> entity has attributes: <code>Customer_ID</code> (PK), <code>First_Name</code>, <code>Email</code>.</li>
+        </ul>
+
+        <h3>2.3. Physical Data Model (PDM)</h3>
+        <ul>
+            <li><strong>Focus:</strong> <span class="key-term">Implementation (How to Store).</span> Defines the actual database objects, including tables, columns with specific data types (e.g., VARCHAR, INT), indexes, and constraints specific to the chosen database (e.g., MySQL, BigQuery).</li>
+            <li><strong>Example:</strong> Defining the <code>CUSTOMER</code> table with <code>Customer_ID</code> as <code>INT64</code> and applying an index on the <code>Email</code> column.</li>
+        </ul>
+    </div>
+
+    <div class="section-box">
+        <h2>3. Dimension Modeling</h2>
+        <p>A technique pioneered by Ralph Kimball, optimized for <span class="key-term">data warehousing and business intelligence (BI)</span>. It separates quantitative metrics from descriptive context.</p>
+        <table>
+            <thead>
+                <tr><th>Component</th><th>Purpose</th><th>Example Attributes</th></tr>
+            </thead>
+            <tbody>
+                <tr><td><strong>Fact Table</strong></td><td>Stores measurable business events (metrics or KPIs).</td><td><code>Sales_Amount</code>, <code>Quantity_Sold</code>, <code>Foreign Keys</code> to all Dimensions.</td></tr>
+                <tr><td><strong>Dimension Table</strong></td><td>Stores descriptive context (who, what, where, when, how).</td><td><code>Product_Name</code>, <code>Store_City</code>, <code>Date</code>, <code>Customer_Age</code>.</td></tr>
+            </tbody>
+        </table>
+    </div>
+
+    <div class="section-box">
+        <h2>4. Star Schema ⭐</h2>
+        <p>The simplest and most efficient Data Warehouse schema. It is called a "star" because the design resembles a star shape.</p>
+        <ul>
+            <li><strong>Structure:</strong> A single, central <span class="key-term">Fact Table</span> is directly connected to multiple <span class="key-term">Dimension Tables</span>.</li>
+            <li><strong>Relationship:</strong> Dimensions are typically de-normalized (no further joins required).</li>
+            <li><strong>Advantage:</strong> Very fast query performance due to minimal joins.</li>
+        </ul>
+        <h3>Diagram Concept</h3>
+        <p class="code-block">
+            <span style="color: green;">[Date Dim]</span> &lt;--&gt; <strong>[Sales Fact]</strong> &lt;--&gt; <span style="color: green;">[Product Dim]</span><br>
+            <span style="color: green;">[Customer Dim]</span> &lt;--&gt; <strong>[Sales Fact]</strong> &lt;--&gt; <span style="color: green;">[Store Dim]</span>
+        </p>
+            </div>
+
+    <div class="section-box">
+        <h2>5. Snowflake Schema ❄️</h2>
+        <p>A logical extension of the Star Schema where the dimension tables are <span class="key-term">normalized</span> to reduce redundancy.</p>
+        <ul>
+            <li><strong>Structure:</strong> Dimension tables are broken down into sub-dimensions (hierarchies).</li>
+            <li><strong>Example:</strong> The <code>Product</code> dimension is normalized into separate <code>Product</code> and <code>Product Category</code> tables.</li>
+            <li><strong>Disadvantage:</strong> More complex queries (more joins required), which can slow down reporting compared to the Star Schema.</li>
+        </ul>
+        <h3>Diagram Concept</h3>
+        <p class="code-block">
+            <span style="color: green;">[Date Dim]</span> &lt;--&gt; <strong>[Sales Fact]</strong> &lt;--&gt; <span style="color: green;">[Product Dim]</span> &lt;--&gt; <span style="color: blue;">[Product Category]</span>
+        </p>
+            </div>
+
+    <div class="section-box">
+        <h2>6. Slowly Changing Dimensions (SCD)</h2>
+        <p>Techniques used to handle dimension attributes that change over time while maintaining an accurate <span class="key-term">historical record</span> for reporting.</p>
+        <ul>
+            <li><strong>Problem:</strong> If a customer's address changes, how do we report on orders shipped to the old address vs. the new address?</li>
+            <li><strong>Solution:</strong> Use different SCD types to manage the historical context.</li>
+        </ul>
+    </div>
+
+    <div class="section-box">
+        <h2>7. SCD Types</h2>
+
+        <h3>7.1. SCD Type 1: Overwrite (No History)</h3>
+        <ul>
+            <li><strong>Method:</strong> The new value <span class="key-term">replaces (overwrites)</span> the old value.</li>
+            <li><strong>History:</strong> Lost. All past fact records will appear to use the new value.</li>
+            <li><strong>Use Case:</strong> Correcting a mistake (typo) or changing a non-critical attribute (e.g., customer's email).</li>
+        </ul>
+
+        <h3>7.2. SCD Type 2: Add New Row (Full History)</h3>
+        <ul>
+            <li><strong>Method:</strong> A <span class="key-term">new row</span> is created for the new attribute value. The dimension table uses columns like <code>Start_Date</code>, <code>End_Date</code>, and an <code>Is_Current</code> flag.</li>
+            <li><strong>History:</strong> Fully preserved. Fact records link to the row that was active at the time of the transaction.</li>
+            <li><strong>Use Case:</strong> Tracking critical changes like **customer address** or **employee department**. This is the most common SCD type.</li>
+        </ul>
+        <div class="code-block">
+            <strong>Before Change:</strong><br>
+            | Cust_Key | Name | Address | Is_Current | Start_Date | End_Date |<br>
+            | 101 | Alice | Old Street | Y | 2024-01-01 | NULL |<br>
+            <br>
+            <strong>After Change (New Row Added):</strong><br>
+            | 101 | Alice | Old Street | N | 2024-01-01 | 2024-06-30 |<br>
+            | 102 | Alice | New Street | Y | 2024-07-01 | NULL |
+        </div>
+
+        <h3>7.3. SCD Type 3: Add New Column (Limited History)</h3>
+        <ul>
+            <li><strong>Method:</strong> A <span class="key-term">new column</span> is added to the dimension table to store the previous value.</li>
+            <li><strong>History:</strong> Limited to tracking only the current value and the **immediate previous value**.</li>
+            <li><strong>Use Case:</strong> Tracking attributes where you only need to compare the current state to the last state (e.g., a customer's loyalty tier).</li>
+        </ul>
+    </div>
+
+</body>
+</html>

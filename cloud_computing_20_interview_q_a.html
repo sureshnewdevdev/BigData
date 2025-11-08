@@ -1,0 +1,212 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>Cloud Computing – 20 Interview Q&A (Single‑Click)</title>
+<style>
+  :root{
+    --bg:#0f172a;          /* slate-900 */
+    --card:#111827;        /* gray-900 */
+    --muted:#94a3b8;       /* slate-400 */
+    --accent:#22d3ee;      /* cyan-400 */
+    --accent-2:#38bdf8;    /* sky-400 */
+    --text:#e5e7eb;        /* gray-200 */
+  }
+  html,body{height:100%;}
+  body{
+    margin:0; font-family:system-ui,-apple-system,Segoe UI,Roboto,Ubuntu,Helvetica,Arial,sans-serif;
+    background:linear-gradient(135deg,var(--bg),#020617 60%);
+    color:var(--text);
+  }
+  .container{max-width:980px; margin:32px auto; padding:0 16px 48px;}
+  header{display:flex; align-items:center; justify-content:space-between; gap:12px; margin-bottom:20px;}
+  h1{font-size:clamp(22px,2.6vw,36px); margin:0; letter-spacing:.2px}
+  .hint{color:var(--muted); font-size:14px}
+  .actions{display:flex; gap:8px; flex-wrap:wrap}
+  button{
+    background:linear-gradient(135deg,var(--accent),var(--accent-2));
+    border:0; color:#001014; font-weight:700; padding:10px 14px; border-radius:12px; cursor:pointer;
+  }
+  button.secondary{background:#1f2937; color:var(--text); border:1px solid #374151}
+  .accordion{display:grid; gap:10px}
+  details{
+    background: #0b1220; border:1px solid #1f2a44; border-radius:14px; overflow:hidden; transition:box-shadow .2s ease;
+  }
+  details[open]{box-shadow:0 10px 25px rgba(2,8,23,.35)}
+  summary{
+    list-style:none; cursor:pointer; padding:16px 18px; display:flex; align-items:center; gap:10px; font-weight:700;
+  }
+  summary::-webkit-details-marker{display:none}
+  .dot{width:8px; height:8px; border-radius:50%; background:var(--accent)}
+  .q{flex:1}
+  .a{padding:0 18px 18px; color:var(--muted); line-height:1.6}
+  code{background:#0b1730; border:1px solid #1f2a44; padding:1px 6px; border-radius:8px; color:#c7d2fe}
+  .tag{display:inline-block; padding:.2rem .5rem; border:1px solid #1f2a44; border-radius:999px; font-size:.75rem; color:#9ca3af; margin:.25rem .25rem 0 0}
+  footer{margin-top:28px; color:var(--muted); font-size:13px}
+</style>
+</head>
+<body>
+  <div class="container">
+    <header>
+      <div>
+        <h1>Cloud Computing – 20 Interview Questions & Answers</h1>
+        <div class="hint">Single‑click a question to reveal the answer. Use buttons to expand/collapse all.</div>
+      </div>
+      <div class="actions">
+        <button id="expandAll">Expand All</button>
+        <button class="secondary" id="collapseAll">Collapse All</button>
+      </div>
+    </header>
+
+    <section class="accordion" id="qa">
+
+      <!-- 1 -->
+      <details>
+        <summary><span class="dot"></span><span class="q">1) What is cloud computing?</span></summary>
+        <div class="a">Cloud computing is the on‑demand delivery of IT resources—compute, storage, networking, databases, and managed services—over the internet with pay‑as‑you‑go pricing. Providers own and operate the infrastructure; customers consume it as services.</div>
+      </details>
+
+      <!-- 2 -->
+      <details>
+        <summary><span class="dot"></span><span class="q">2) List the common <em>deployment models</em>.</span></summary>
+        <div class="a"><strong>Public</strong> (shared provider DCs), <strong>Private</strong> (single‑tenant), <strong>Hybrid</strong> (mix with interoperability), and <strong>Multi‑cloud</strong> (use of more than one public cloud to avoid lock‑in or optimize services).</div>
+      </details>
+
+      <!-- 3 -->
+      <details>
+        <summary><span class="dot"></span><span class="q">3) Differentiate IaaS, PaaS, and SaaS.</span></summary>
+        <div class="a">
+          <ul>
+            <li><b>IaaS</b>: Virtualized hardware (VMs, storage, networks). You manage OS upward. Example: <code>EC2</code>, <code>Azure VMs</code>, <code>GCE</code>.</li>
+            <li><b>PaaS</b>: Managed runtime and middleware. You focus on code. Example: <code>Azure App Service</code>, <code>Elastic Beanstalk</code>, <code>Cloud Run</code>.</li>
+            <li><b>SaaS</b>: Complete apps delivered over the internet. Example: <code>Office 365</code>, <code>Salesforce</code>.</li>
+          </ul>
+        </div>
+      </details>
+
+      <!-- 4 -->
+      <details>
+        <summary><span class="dot"></span><span class="q">4) Explain the Shared Responsibility Model.</span></summary>
+        <div class="a">Cloud providers secure the <i>cloud</i> (facilities, hardware, foundational services). Customers secure what they put <i>in</i> the cloud (OS, apps, identities, data, configs). The exact split differs by service type—SaaS shifts more responsibility to the provider.</div>
+      </details>
+
+      <!-- 5 -->
+      <details>
+        <summary><span class="dot"></span><span class="q">5) What are Regions and Availability Zones?</span></summary>
+        <div class="a"><b>Regions</b> are geographic areas containing one or more isolated data‑center groups called <b>Availability Zones (AZs)</b>. Deploying across multiple AZs improves high availability and fault isolation.</div>
+      </details>
+
+      <!-- 6 -->
+      <details>
+        <summary><span class="dot"></span><span class="q">6) CapEx vs OpEx in cloud pricing?</span></summary>
+        <div class="a"><b>CapEx</b> (capital expense) is upfront investment in hardware and facilities. <b>OpEx</b> (operating expense) is pay‑as‑you‑use spending on services. Cloud shifts most costs to OpEx, reducing lead time and over‑provisioning.</div>
+      </details>
+
+      <!-- 7 -->
+      <details>
+        <summary><span class="dot"></span><span class="q">7) Elasticity vs. Scalability?</span></summary>
+        <div class="a"><b>Scalability</b> is the ability to handle growth (scale up/out). <b>Elasticity</b> is automatic scaling both up and down based on demand, optimizing cost. Auto‑scaling groups/VMSS are typical enablers.</div>
+      </details>
+
+      <!-- 8 -->
+      <details>
+        <summary><span class="dot"></span><span class="q">8) What is multi‑tenancy and why does it matter?</span></summary>
+        <div class="a">Multi‑tenancy means many customers share the same physical resources with logical isolation. It enables economies of scale but requires strong isolation (VPC/VNet, IAM, encryption) and noisy‑neighbor controls.</div>
+      </details>
+
+      <!-- 9 -->
+      <details>
+        <summary><span class="dot"></span><span class="q">9) Containers vs VMs in the cloud?</span></summary>
+        <div class="a">VMs virtualize hardware; each includes a full OS. Containers virtualize at the OS level, sharing the kernel and packing apps with dependencies. Containers start faster and are denser; VMs offer stronger isolation. Managed options: <code>EKS/AKS/GKE</code>, <code>App Runner</code>, <code>Cloud Run</code>.</div>
+      </details>
+
+      <!-- 10 -->
+      <details>
+        <summary><span class="dot"></span><span class="q">10) Common cloud pricing models?</span></summary>
+        <div class="a"><b>On‑demand/Pay‑as‑you‑go</b>, <b>Reserved/Committed use</b> for 1–3 years (save 30–70%), and <b>Spot/Preemptible</b> for fault‑tolerant workloads at deep discounts. Watch <i>storage classes</i> and <i>data egress</i> fees.</div>
+      </details>
+
+      <!-- 11 -->
+      <details>
+        <summary><span class="dot"></span><span class="q">11) What is a VPC/VNet?</span></summary>
+        <div class="a">A logically isolated virtual network in a provider’s cloud with subnets, route tables, and security groups/NSGs. It lets you run private workloads, connect via VPN/ExpressRoute/Direct Connect, and control traffic.</div>
+      </details>
+
+      <!-- 12 -->
+      <details>
+        <summary><span class="dot"></span><span class="q">12) High availability vs fault tolerance?</span></summary>
+        <div class="a"><b>High availability</b> minimizes downtime via redundancy and failover across AZs. <b>Fault tolerance</b> continues operation with zero interruption when components fail—usually requires active‑active and higher cost.</div>
+      </details>
+
+      <!-- 13 -->
+      <details>
+        <summary><span class="dot"></span><span class="q">13) What is serverless?</span></summary>
+        <div class="a">A compute model where you deploy functions or containers and the platform auto‑scales and bills per execution time/requests. No server management. Examples: <code>AWS Lambda</code>, <code>Azure Functions</code>, <code>Cloud Functions</code>.</div>
+      </details>
+
+      <!-- 14 -->
+      <details>
+        <summary><span class="dot"></span><span class="q">14) Object vs block storage—when to use which?</span></summary>
+        <div class="a"><b>Object</b> storage (S3/Blob/GCS) for unstructured data, massive scale, versioning, lifecycle, cheap + eventual consistency. <b>Block</b> storage (EBS/Managed Disks/Persistent Disks) for low‑latency attached volumes to VMs and databases.</div>
+      </details>
+
+      <!-- 15 -->
+      <details>
+        <summary><span class="dot"></span><span class="q">15) What are common cloud security challenges?</span></summary>
+        <div class="a">Misconfigurations (public buckets, open security groups), weak IAM, unencrypted data, secret leakage, and supply‑chain vulnerabilities. Mitigate with least privilege, CIS benchmarks, KMS‑managed keys, secret managers, and continuous posture tools.</div>
+      </details>
+
+      <!-- 16 -->
+      <details>
+        <summary><span class="dot"></span><span class="q">16) Define RTO and RPO with an example.</span></summary>
+        <div class="a"><b>RTO</b> (Recovery Time Objective) is max acceptable downtime; <b>RPO</b> (Recovery Point Objective) is max acceptable data loss window. Example: RTO 15 min, RPO 5 min → design cross‑AZ failover and 5‑minute replication.</div>
+      </details>
+
+      <!-- 17 -->
+      <details>
+        <summary><span class="dot"></span><span class="q">17) How does IAM enable least privilege?</span></summary>
+        <div class="a">IAM grants fine‑grained permissions to users, groups, and service principals using roles/policies. Start with deny‑by‑default, give only required actions on specific resources, and use short‑lived credentials and MFA.</div>
+      </details>
+
+      <!-- 18 -->
+      <details>
+        <summary><span class="dot"></span><span class="q">18) What drives <em>data egress</em> cost and how to reduce it?</span></summary>
+        <div class="a">Cross‑region and internet outbound traffic incur charges. Reduce by caching/CDN, keeping compute close to data, private peering, compressing, and minimizing chatty cross‑cloud architectures.</div>
+      </details>
+
+      <!-- 19 -->
+      <details>
+        <summary><span class="dot"></span><span class="q">19) When to choose AWS vs Azure vs GCP?</span></summary>
+        <div class="a">
+          <span class="tag">AWS: breadth + maturity</span>
+          <span class="tag">Azure: Microsoft ecosystem & enterprise</span>
+          <span class="tag">GCP: data/ML & global network</span>
+          <div style="margin-top:.5rem">Real choice depends on existing contracts, skills, required services (e.g., AD/AAD integration → Azure; BigQuery/Vertex AI → GCP; widest marketplace/options → AWS), and regional presence.</div>
+        </div>
+      </details>
+
+      <!-- 20 -->
+      <details>
+        <summary><span class="dot"></span><span class="q">20) What does a typical multi‑AZ web app architecture look like?</span></summary>
+        <div class="a">Clients → <b>CDN</b>/<b>WAF</b> → <b>Load Balancer</b> → autoscaling <b>App tier</b> in multiple AZs → <b>Managed DB</b> with read replicas → <b>Object Storage</b> for static assets → <b>Queue</b>/<b>Pub‑Sub</b> for async work → <b>Monitoring</b> + <b>IaC</b> for repeatable deploys.</div>
+      </details>
+
+    </section>
+
+    <footer>
+      Tip: Press <code>/</code> in most browsers to search within this page. You can embed this file directly into your training site.
+    </footer>
+  </div>
+
+<script>
+  // Single‑click reveal is native via <details>. Below adds Expand/Collapse All.
+  const expandBtn = document.getElementById('expandAll');
+  const collapseBtn = document.getElementById('collapseAll');
+  const items = () => Array.from(document.querySelectorAll('#qa details'));
+
+  expandBtn.addEventListener('click', () => items().forEach(d => d.open = true));
+  collapseBtn.addEventListener('click', () => items().forEach(d => d.open = false));
+</script>
+</body>
+</html>

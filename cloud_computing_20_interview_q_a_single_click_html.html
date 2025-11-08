@@ -1,0 +1,294 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>Cloud Computing – Topic‑wise 20×7 Interview Q&A (Single‑Click)</title>
+<style>
+  :root{
+    --bg:#0f172a; --card:#0b1220; --muted:#94a3b8; --accent:#22d3ee; --accent2:#38bdf8; --text:#e5e7eb; --border:#1f2a44;
+  }
+  html,body{height:100%}
+  body{margin:0; font-family:system-ui,-apple-system,Segoe UI,Roboto,Ubuntu,Helvetica,Arial,sans-serif; background:linear-gradient(135deg,var(--bg),#020617 60%); color:var(--text)}
+  .container{max-width:1100px; margin:32px auto; padding:0 16px 56px}
+  header{display:flex; align-items:center; justify-content:space-between; gap:12px; margin-bottom:18px}
+  h1{font-size:clamp(22px,2.6vw,36px); margin:0}
+  .hint{color:var(--muted); font-size:14px}
+  .actions{display:flex; gap:8px; flex-wrap:wrap}
+  button{background:linear-gradient(135deg,var(--accent),var(--accent2)); border:0; color:#001014; font-weight:700; padding:10px 14px; border-radius:12px; cursor:pointer}
+  button.secondary{background:#1f2937; color:var(--text); border:1px solid #374151}
+  .topic{margin-top:26px}
+  .topic>h2{display:flex; align-items:center; gap:10px; font-size:clamp(18px,2.2vw,26px); margin:8px 0 10px}
+  .topic .controls{display:flex; gap:8px; margin:8px 0 14px}
+  .chip{display:inline-flex; align-items:center; gap:8px; padding:6px 10px; border-radius:999px; background:#0a162c; border:1px solid var(--border); color:#cbd5e1; font-size:13px}
+  .accordion{display:grid; gap:10px}
+  details{background: var(--card); border:1px solid var(--border); border-radius:14px; overflow:hidden; transition:box-shadow .2s ease}
+  details[open]{box-shadow:0 10px 25px rgba(2,8,23,.35)}
+  summary{list-style:none; cursor:pointer; padding:15px 18px; display:flex; align-items:center; gap:10px; font-weight:700}
+  summary::-webkit-details-marker{display:none}
+  .dot{width:8px; height:8px; border-radius:50%; background:var(--accent)}
+  .q{flex:1}
+  .a{padding:0 18px 18px; color:var(--muted); line-height:1.6}
+  code{background:#0b1730; border:1px solid var(--border); padding:1px 6px; border-radius:8px; color:#c7d2fe}
+  .kbd{border:1px solid var(--border); padding:.1rem .35rem; border-radius:6px; font-family:ui-monospace,Menlo,Consolas,monospace}
+  footer{margin-top:28px; color:var(--muted); font-size:13px}
+</style>
+</head>
+<body>
+  <div class="container">
+    <header>
+      <div>
+        <h1>Cloud Computing – Topic‑wise Interview Questions (140 Q&A)</h1>
+        <div class="hint">Single‑click any question to reveal the answer. Use buttons to expand/collapse all.</div>
+      </div>
+      <div class="actions">
+        <button id="expandAll">Expand All</button>
+        <button class="secondary" id="collapseAll">Collapse All</button>
+      </div>
+    </header>
+
+    <!-- ===== Topic 1: Definition ===== -->
+    <section class="topic" id="definition">
+      <h2><span class="chip">Topic 1</span> Cloud Computing Definition</h2>
+      <div class="controls"><button data-expand="#definition">Expand</button><button class="secondary" data-collapse="#definition">Collapse</button></div>
+      <div class="accordion">
+        
+        <!-- 1.1 -->
+        <details><summary><span class="dot"></span><span class="q">1) What is cloud computing in one sentence?</span></summary><div class="a">On‑demand delivery of shared IT resources and managed services over the internet with pay‑as‑you‑go pricing.</div></details>
+        <!-- 1.2 -->
+        <details><summary><span class="dot"></span><span class="q">2) Name three essential characteristics defined by NIST.</span></summary><div class="a">On‑demand self‑service, broad network access, resource pooling, rapid elasticity, and measured service (any 3).</div></details>
+        <!-- 1.3 -->
+        <details><summary><span class="dot"></span><span class="q">3) How is cloud different from traditional hosting?</span></summary><div class="a">Elastic, metered, API‑driven, multi‑tenant, with abstracted infrastructure vs fixed capacity, manual ticketing, and long procurement cycles.</div></details>
+        <!-- 1.4 -->
+        <details><summary><span class="dot"></span><span class="q">4) Give two business benefits.</span></summary><div class="a">Faster time‑to‑market and lower upfront cost; plus global reach and improved availability.</div></details>
+        <!-- 1.5 -->
+        <details><summary><span class="dot"></span><span class="q">5) What is <em>resource pooling</em>?</span></summary><div class="a">Provider’s resources are shared among tenants using a multi‑tenant model with dynamic allocation and isolation controls.</div></details>
+        <!-- 1.6 -->
+        <details><summary><span class="dot"></span><span class="q">6) What is <em>measured service</em>?</span></summary><div class="a">Automatic metering of usage (compute hours, requests, GB‑months) to enable chargeback/showback and auto‑scaling policies.</div></details>
+        <!-- 1.7 -->
+        <details><summary><span class="dot"></span><span class="q">7) What is an API in the cloud context?</span></summary><div class="a">A programmatic interface (REST/CLI/SDK) to provision and manage services, enabling IaC and automation.</div></details>
+        <!-- 1.8 -->
+        <details><summary><span class="dot"></span><span class="q">8) Define <em>tenancy</em>.</span></summary><div class="a">The degree of isolation among customers sharing a platform, e.g., single‑tenant vs multi‑tenant deployments.</div></details>
+        <!-- 1.9 -->
+        <details><summary><span class="dot"></span><span class="q">9) What is serverless in simple terms?</span></summary><div class="a">You deploy code, the platform manages servers and scaling, and you pay per execution/time.</div></details>
+        <!-- 1.10 -->
+        <details><summary><span class="dot"></span><span class="q">10) Define <em>cloud‑native</em>.</span></summary><div class="a">Architecting apps with microservices, containers, DevOps/IaC, and managed services to exploit elasticity and resilience.</div></details>
+        <!-- 1.11 -->
+        <details><summary><span class="dot"></span><span class="q">11) Example of cloud service for storage, compute, and database.</span></summary><div class="a">Object storage: S3/Blob/GCS; Compute: EC2/VM/Compute Engine; DB: RDS/SQL DB/Cloud SQL.</div></details>
+        <!-- 1.12 -->
+        <details><summary><span class="dot"></span><span class="q">12) What is <em>region</em>?</span></summary><div class="a">A geographical area containing multiple isolated data‑center groups (AZs).</div></details>
+        <!-- 1.13 -->
+        <details><summary><span class="dot"></span><span class="q">13) What is <em>availability zone</em>?</span></summary><div class="a">An isolated fault domain (one or more DCs) within a region with independent power/network.</div></details>
+        <!-- 1.14 -->
+        <details><summary><span class="dot"></span><span class="q">14) Why is elasticity important?</span></summary><div class="a">It matches capacity to demand automatically, improving performance and reducing cost.</div></details>
+        <!-- 1.15 -->
+        <details><summary><span class="dot"></span><span class="q">15) What is a <em>managed service</em>?</span></summary><div class="a">A service where the provider operates the underlying stack (patching, HA, backups) so customers focus on usage.</div></details>
+        <!-- 1.16 -->
+        <details><summary><span class="dot"></span><span class="q">16) Role of IaC?</span></summary><div class="a">Infrastructure as Code (e.g., Terraform/Bicep/CloudFormation) declares resources so environments are reproducible and version‑controlled.</div></details>
+        <!-- 1.17 -->
+        <details><summary><span class="dot"></span><span class="q">17) Define <em>SLA</em>.</span></summary><div class="a">Service Level Agreement—provider’s uptime/reliability commitment (e.g., 99.9%) and remedies.</div></details>
+        <!-- 1.18 -->
+        <details><summary><span class="dot"></span><span class="q">18) What is <em>cloud bursting</em>?</span></summary><div class="a">A hybrid pattern where on‑prem handles baseline and cloud absorbs demand spikes.</div></details>
+        <!-- 1.19 -->
+        <details><summary><span class="dot"></span><span class="q">19) What is <em>data gravity</em>?</span></summary><div class="a">Large datasets attract compute/services to where the data resides due to egress/latency—design compute near data.</div></details>
+        <!-- 1.20 -->
+        <details><summary><span class="dot"></span><span class="q">20) Name two cloud adoption pitfalls.</span></summary><div class="a">Lift‑and‑shift without rightsizing and weak governance causing sprawl and cost overruns.</div></details>
+      </div>
+    </section>
+
+    <!-- ===== Topic 2: Model Types ===== -->
+    <section class="topic" id="models">
+      <h2><span class="chip">Topic 2</span> Cloud Computing Model Types (Deployment)</h2>
+      <div class="controls"><button data-expand="#models">Expand</button><button class="secondary" data-collapse="#models">Collapse</button></div>
+      <div class="accordion">
+        <details><summary><span class="dot"></span><span class="q">1) List deployment models.</span></summary><div class="a">Public, Private, Hybrid, Community, Multi‑cloud.</div></details>
+        <details><summary><span class="dot"></span><span class="q">2) Public vs Private—key trade‑off?</span></summary><div class="a">Public: agility/cost; Private: control/compliance; Hybrid mixes both.</div></details>
+        <details><summary><span class="dot"></span><span class="q">3) What is community cloud?</span></summary><div class="a">A cloud shared by organizations with common concerns (e.g., government, healthcare).</div></details>
+        <details><summary><span class="dot"></span><span class="q">4) Typical hybrid connectivity?</span></summary><div class="a">VPN/ExpressRoute/Direct Connect + identity federation + routing with BGP.</div></details>
+        <details><summary><span class="dot"></span><span class="q">5) Pattern: data residency with global app?</span></summary><div class="a">Keep data in‑region; serve via CDN and stateless edge/API Gateways; use multi‑region replication if needed.</div></details>
+        <details><summary><span class="dot"></span><span class="q">6) Multi‑cloud anti‑pattern?</span></summary><div class="a">Lowest‑common‑denominator abstractions that reduce velocity and increase latency/egress cost.</div></details>
+        <details><summary><span class="dot"></span><span class="q">7) When to choose private cloud?</span></summary><div class="a">Strict compliance, data sovereignty, or latency to on‑prem systems with existing DC investments.</div></details>
+        <details><summary><span class="dot"></span><span class="q">8) Edge computing in models?</span></summary><div class="a">Push compute close to users/devices (CDN/edge runtimes) to reduce latency and bandwidth.</div></details>
+        <details><summary><span class="dot"></span><span class="q">9) Control plane vs data plane?</span></summary><div class="a">Control plane manages resources (APIs, metadata); data plane handles workload/data traffic. Separation aids resilience.</div></details>
+        <details><summary><span class="dot"></span><span class="q">10) Active‑active vs active‑passive regions?</span></summary><div class="a">Active‑active serves traffic in both regions; active‑passive fails over on disaster. Cost vs RTO/RPO trade‑off.</div></details>
+        <details><summary><span class="dot"></span><span class="q">11) What is tenancy model choice impact?</span></summary><div class="a">Affects isolation, scaling, and data model—e.g., separate DB per tenant vs shared with tenant_id.</div></details>
+        <details><summary><span class="dot"></span><span class="q">12) Network segmentation best practice?</span></summary><div class="a">Separate subnets per tier, use security groups/NSGs, private endpoints, and zero‑trust rules.</div></details>
+        <details><summary><span class="dot"></span><span class="q">13) DR pattern for hybrid apps?</span></summary><div class="a">Replicate state to cloud, keep infra as code, periodically run failover drills (chaos testing).</div></details>
+        <details><summary><span class="dot"></span><span class="q">14) How do SLAs compound across tiers?</span></summary><div class="a">Multiply availability of dependent services; design to avoid single points (e.g., decouple via queues).</div></details>
+        <details><summary><span class="dot"></span><span class="q">15) What is landing zone?</span></summary><div class="a">A pre‑built, governed foundation (accounts/subscriptions, networking, IAM, policies) for workloads.</div></details>
+        <details><summary><span class="dot"></span><span class="q">16) Cloud adoption framework purpose?</span></summary><div class="a">Guides strategy, governance, security, and platform setup to scale safely.</div></details>
+        <details><summary><span class="dot"></span><span class="q">17) Blue/green vs canary in multi‑region?</span></summary><div class="a">Blue/green swaps entire stacks; canary shifts small traffic % to new version per region for safer rollout.</div></details>
+        <details><summary><span class="dot"></span><span class="q">18) Typical network isolation for prod vs non‑prod?</span></summary><div class="a">Separate accounts/subscriptions/VPCs, distinct CIDRs, strict peering and role boundaries.</div></details>
+        <details><summary><span class="dot"></span><span class="q">19) How to handle secrets across models?</span></summary><div class="a">Use managed secret vaults (KMS/Key Vault/Secret Manager), not env files; rotate and scope per environment.</div></details>
+        <details><summary><span class="dot"></span><span class="q">20) Cost guardrails in landing zones?</span></summary><div class="a">Budgets/alerts, tagging policies, quotas, and automated cleanup of idle resources.</div></details>
+      </div>
+    </section>
+
+    <!-- ===== Topic 3: Service Types ===== -->
+    <section class="topic" id="services">
+      <h2><span class="chip">Topic 3</span> Cloud Computing Service Types</h2>
+      <div class="controls"><button data-expand="#services">Expand</button><button class="secondary" data-collapse="#services">Collapse</button></div>
+      <div class="accordion">
+        <details><summary><span class="dot"></span><span class="q">1) Core service categories?</span></summary><div class="a">Compute, Storage, Database, Networking, Security, Observability, AI/ML, Integration, Developer Tools.</div></details>
+        <details><summary><span class="dot"></span><span class="q">2) Managed database advantages?</span></summary><div class="a">Automated backups, patching, HA, read replicas, point‑in‑time restore—reduced ops toil.</div></details>
+        <details><summary><span class="dot"></span><span class="q">3) When to choose serverless compute?</span></summary><div class="a">Event‑driven, bursty workloads with sporadic traffic; pay per use and no idle cost.</div></details>
+        <details><summary><span class="dot"></span><span class="q">4) Message queue vs pub/sub?</span></summary><div class="a">Queue: point‑to‑point with ordering. Pub/Sub: fan‑out to many subscribers; loosely coupled microservices.</div></details>
+        <details><summary><span class="dot"></span><span class="q">5) CDN purpose?</span></summary><div class="a">Cache content at edge to reduce latency, offload origin, and cut egress from regions.</div></details>
+        <details><summary><span class="dot"></span><span class="q">6) Observability pillars?</span></summary><div class="a">Logs, metrics, traces; add profiling and synthetics for completeness.</div></details>
+        <details><summary><span class="dot"></span><span class="q">7) Storage classes typical choices?</span></summary><div class="a">Hot/standard for frequent access; cool/nearline for infrequent; archive for long‑term retention.</div></details>
+        <details><summary><span class="dot"></span><span class="q">8) Data warehouse vs data lake?</span></summary><div class="a">Warehouse: structured, SQL, BI; Lake: raw multi‑format at low cost; Lakehouse blends both.</div></details>
+        <details><summary><span class="dot"></span><span class="q">9) API gateways provide?</span></summary><div class="a">Routing, auth, rate limiting, transforms, observability for microservices.</div></details>
+        <details><summary><span class="dot"></span><span class="q">10) Function timeout impact?</span></summary><div class="a">Long tasks should be offloaded to queues/workers; functions have limited runtime and memory.</div></details>
+        <details><summary><span class="dot"></span><span class="q">11) Managed Kubernetes use case?</span></summary><div class="a">Portable microservices with custom runtimes/sidecars where PaaS isn’t flexible enough.</div></details>
+        <details><summary><span class="dot"></span><span class="q">12) Event vs job schedulers?</span></summary><div class="a">Events react to triggers (e.g., blob upload); schedulers run time‑based CRON workloads.</div></details>
+        <details><summary><span class="dot"></span><span class="q">13) DDoS/WAF services role?</span></summary><div class="a">Protect apps from volumetric and layer‑7 attacks with scrubbing, rules, and bot controls.</div></details>
+        <details><summary><span class="dot"></span><span class="q">14) Secrets vs config?</span></summary><div class="a">Secrets are sensitive values stored in vaults; config are non‑secret settings managed via config stores.</div></details>
+        <details><summary><span class="dot"></span><span class="q">15) Data integration services?</span></summary><div class="a">ETL/ELT tools like AWS Glue, Azure Data Factory, GCP Dataflow; orchestrate pipelines between sources and sinks.</div></details>
+        <details><summary><span class="dot"></span><span class="q">16) AI/ML managed options?</span></summary><div class="a">SageMaker, Azure ML, Vertex AI for training/deployment; plus turnkey APIs for vision, speech, and generative AI.</div></details>
+        <details><summary><span class="dot"></span><span class="q">17) Object lock/legal hold?</span></summary><div class="a">Write‑once‑read‑many (WORM) retention to prevent deletion/tamper—useful for compliance.</div></details>
+        <details><summary><span class="dot"></span><span class="q">18) Private endpoints?</span></summary><div class="a">Expose PaaS services on private IPs inside VPC/VNet to avoid public internet paths.</div></details>
+        <details><summary><span class="dot"></span><span class="q">19) Blueprints/templates?</span></summary><div class="a">Pre‑approved bundles of policies and resources to standardize environments.</div></details>
+        <details><summary><span class="dot"></span><span class="q">20) Monitoring SLO vs SLA?</span></summary><div class="a">SLO is internal objective; SLA is contractual. Alerts should track SLO error budgets to act before SLA breaches.</div></details>
+      </div>
+    </section>
+
+    <!-- ===== Topic 4: IaaS/PaaS/SaaS ===== -->
+    <section class="topic" id="iaaspaassaas">
+      <h2><span class="chip">Topic 4</span> IaaS, PaaS, SaaS (Comparisons & Scenarios)</h2>
+      <div class="controls"><button data-expand="#iaaspaassaas">Expand</button><button class="secondary" data-collapse="#iaaspaassaas">Collapse</button></div>
+      <div class="accordion">
+        <details><summary><span class="dot"></span><span class="q">1) Responsibility split across models?</span></summary><div class="a">SaaS: provider handles app‑to‑infra; PaaS: provider handles runtime/OS; IaaS: you handle OS up.</div></details>
+        <details><summary><span class="dot"></span><span class="q">2) Migration of legacy app—start where?</span></summary><div class="a">Often IaaS lift‑and‑shift, then modernize to PaaS/serverless for ops/cost gains.</div></details>
+        <details><summary><span class="dot"></span><span class="q">3) DB choices across models?</span></summary><div class="a">IaaS: self‑managed DB on VM; PaaS: managed DB (RDS/SQL DB/Cloud SQL); SaaS: embedded storage inside app (limited control).</div></details>
+        <details><summary><span class="dot"></span><span class="q">4) Custom networking requirement?</span></summary><div class="a">Choose IaaS or container platforms; PaaS/SaaS expose limited networking customizations.</div></details>
+        <details><summary><span class="dot"></span><span class="q">5) Compliance data—better fit?</span></summary><div class="a">PaaS with private endpoints and key management or Private Cloud IaaS; SaaS only if it meets certifications and data residency.</div></details>
+        <details><summary><span class="dot"></span><span class="q">6) Cost model difference?</span></summary><div class="a">IaaS bills per VM/storage/network; PaaS per instance/runtime tier; SaaS per seat or usage (requests/records).</div></details>
+        <details><summary><span class="dot"></span><span class="q">7) Lock‑in risk?</span></summary><div class="a">Highest in SaaS (proprietary features/data schema), moderate in PaaS, lowest in IaaS (but still with APIs).</div></details>
+        <details><summary><span class="dot"></span><span class="q">8) Dev velocity?</span></summary><div class="a">PaaS/SaaS accelerate delivery via managed runtimes and integrations; IaaS requires more ops effort.</div></details>
+        <details><summary><span class="dot"></span><span class="q">9) Examples of each?</span></summary><div class="a">IaaS: EC2/Azure VMs/GCE; PaaS: App Service/Elastic Beanstalk/Cloud Run; SaaS: Salesforce/Office 365/Slack.</div></details>
+        <details><summary><span class="dot"></span><span class="q">10) Scaling approach difference?</span></summary><div class="a">IaaS: VMSS/ASG; PaaS: instance counts/tiers; SaaS: provider auto‑scales; you tune plan limits.</div></details>
+        <details><summary><span class="dot"></span><span class="q">11) Backup strategy difference?</span></summary><div class="a">IaaS: you design/operate; PaaS: configure retention; SaaS: rely on vendor + export/archive.</div></details>
+        <details><summary><span class="dot"></span><span class="q">12) Observability?</span></summary><div class="a">IaaS: full host metrics/logs; PaaS: app‑level logs/metrics; SaaS: limited telemetry via audit/API.</div></details>
+        <details><summary><span class="dot"></span><span class="q">13) CI/CD fit?</span></summary><div class="a">Works everywhere; PaaS/Functions integrate tightly with build/deploy hooks.</div></details>
+        <details><summary><span class="dot"></span><span class="q">14) When choose SaaS over PaaS?</span></summary><div class="a">For commodity capabilities (email, CRM, service desk) where customization needs are low.</div></details>
+        <details><summary><span class="dot"></span><span class="q">15) Security patching impact?</span></summary><div class="a">IaaS: you patch OS; PaaS: provider patches runtime/OS; SaaS: provider patches app and stack.</div></details>
+        <details><summary><span class="dot"></span><span class="q">16) Data portability concern?</span></summary><div class="a">Ensure export formats/APIs and retention windows before adopting SaaS/PaaS.</div></details>
+        <details><summary><span class="dot"></span><span class="q">17) Cost predictability?</span></summary><div class="a">SaaS per‑user plans are predictable; IaaS/PaaS vary with workload patterns.</div></details>
+        <details><summary><span class="dot"></span><span class="q">18) Performance tuning?</span></summary><div class="a">IaaS exposes most knobs (kernel/FS); PaaS exposes app/runtime options; SaaS exposes limited settings.</div></details>
+        <details><summary><span class="dot"></span><span class="q">19) Example modernization path.</span></summary><div class="a">EC2 VM → container on EKS/AKS → PaaS App Service/Cloud Run → Functions for event flows.</div></details>
+        <details><summary><span class="dot"></span><span class="q">20) FinOps implication across models?</span></summary><div class="a">Rightsize and schedule IaaS; choose proper tiers for PaaS; manage licenses/seat counts for SaaS.</div></details>
+      </div>
+    </section>
+
+    <!-- ===== Topic 5: Challenges ===== -->
+    <section class="topic" id="challenges">
+      <h2><span class="chip">Topic 5</span> Cloud Challenges</h2>
+      <div class="controls"><button data-expand="#challenges">Expand</button><button class="secondary" data-collapse="#challenges">Collapse</button></div>
+      <div class="accordion">
+        <details><summary><span class="dot"></span><span class="q">1) Top three risks?</span></summary><div class="a">Misconfiguration, IAM over‑permissioning, and uncontrolled cost.</div></details>
+        <details><summary><span class="dot"></span><span class="q">2) How to prevent public bucket leaks?</span></summary><div class="a">Block public access, use bucket policies/ACL audits, enable object ownership, and scanners.</div></details>
+        <details><summary><span class="dot"></span><span class="q">3) Identity sprawl mitigation?</span></summary><div class="a">Central IdP, SSO, role‑based access, short‑lived tokens, and periodic reviews.</div></details>
+        <details><summary><span class="dot"></span><span class="q">4) Shadow IT control?</span></summary><div class="a">Guardrails with policies, budgets, and approved catalogs; network egress monitoring.</div></details>
+        <details><summary><span class="dot"></span><span class="q">5) Data residency?</span></summary><div class="a">Choose compliant regions, encrypt with customer‑managed keys, and restrict cross‑region replication.</div></details>
+        <details><summary><span class="dot"></span><span class="q">6) Vendor lock‑in?</span></summary><div class="a">Abstract at data/contracts, standardize with containers/IaC, and negotiate exit clauses.</div></details>
+        <details><summary><span class="dot"></span><span class="q">7) Cost spikes?</span></summary><div class="a">Enable budgets/alerts, anomaly detection, and tagging; kill idle resources automatically.</div></details>
+        <details><summary><span class="dot"></span><span class="q">8) Secrets leakage?</span></summary><div class="a">Use secret managers and workload identity; avoid hard‑coding/committing keys.</div></details>
+        <details><summary><span class="dot"></span><span class="q">9) Multi‑AZ design mistake?</span></summary><div class="a">Putting stateful single‑AZ dependencies behind a multi‑AZ app—causes partial failures.</div></details>
+        <details><summary><span class="dot"></span><span class="q">10) Noisy neighbor issue?</span></summary><div class="a">Use appropriate instance types, quotas, and dedicated hosts where needed.</div></details>
+        <details><summary><span class="dot"></span><span class="q">11) Data egress surprise bills?</span></summary><div class="a">Architect compute near data, use CDNs and private peering, compress payloads.</div></details>
+        <details><summary><span class="dot"></span><span class="q">12) Key rotation best practice?</span></summary><div class="a">Automate via KMS/Key Vault schedules, enforce least privilege, and monitor usage.</div></details>
+        <details><summary><span class="dot"></span><span class="q">13) DR drills?</span></summary><div class="a">Run regular failover tests and chaos experiments to validate RTO/RPO.</div></details>
+        <details><summary><span class="dot"></span><span class="q">14) Compliance mapping?</span></summary><div class="a">Map controls to frameworks (ISO, SOC, HIPAA) using provider attestations and shared responsibility.</div></details>
+        <details><summary><span class="dot"></span><span class="q">15) Observability debt?</span></summary><div class="a">Define SLOs early, standardize logging/metrics schemas, and centralize traces.</div></details>
+        <details><summary><span class="dot"></span><span class="q">16) Stateful microservices?</span></summary><div class="a">Externalize state to managed stores; use idempotency, retries, and sagas.</div></details>
+        <details><summary><span class="dot"></span><span class="q">17) Capacity limits/quotas?</span></summary><div class="a">Request increases early for scale events; design sharding and region fallback.</div></details>
+        <details><summary><span class="dot"></span><span class="q">18) IaC drift?</span></summary><div class="a">Block console changes, use drift detection and pipelines with policy checks.</div></details>
+        <details><summary><span class="dot"></span><span class="q">19) Cost allocation to teams?</span></summary><div class="a">Use tags/labels & billing accounts; showback dashboards and chargeback.
+        </div></details>
+        <details><summary><span class="dot"></span><span class="q">20) Blue team basics in cloud?</span></summary><div class="a">Centralize logs, turn on threat detection (GuardDuty/Defender/SCC), least privilege, MFA, and just‑in‑time access.</div></details>
+      </div>
+    </section>
+
+    <!-- ===== Topic 6: Pricing ===== -->
+    <section class="topic" id="pricing">
+      <h2><span class="chip">Topic 6</span> Cloud Pricing & FinOps</h2>
+      <div class="controls"><button data-expand="#pricing">Expand</button><button class="secondary" data-collapse="#pricing">Collapse</button></div>
+      <div class="accordion">
+        <details><summary><span class="dot"></span><span class="q">1) Main cost drivers?</span></summary><div class="a">Compute hours, storage GB‑months, data transfer/egress, managed service units, and licenses.</div></details>
+        <details><summary><span class="dot"></span><span class="q">2) On‑demand vs reserved?</span></summary><div class="a">On‑demand flexible; reserved/committed use saves 30–70% for steady workloads.</div></details>
+        <details><summary><span class="dot"></span><span class="q">3) Spot/preemptible use case?</span></summary><div class="a">Fault‑tolerant, batch, CI, and stateless workers that can handle interruptions.</div></details>
+        <details><summary><span class="dot"></span><span class="q">4) Right‑sizing?</span></summary><div class="a">Match instance size/tier to actual utilization via metrics; remove over‑provisioning.</div></details>
+        <details><summary><span class="dot"></span><span class="q">5) Storage lifecycle policies?</span></summary><div class="a">Move cold data to cheaper classes automatically; apply deletion after retention.</div></details>
+        <details><summary><span class="dot"></span><span class="q">6) Egress minimization?</span></summary><div class="a">Place compute near data, use CDNs/peering, and avoid chatty cross‑region calls.</div></details>
+        <details><summary><span class="dot"></span><span class="q">7) License considerations?</span></summary><div class="a">BYOL vs included licenses (SQL, Windows); check core counts and multiplexing rules.</div></details>
+        <details><summary><span class="dot"></span><span class="q">8) Scheduler savings?</span></summary><div class="a">Shut down dev/test after hours; scale to zero on serverless/container platforms.</div></details>
+        <details><summary><span class="dot"></span><span class="q">9) Cost allocation?</span></summary><div class="a">Use tags/projects/resource groups per team/product; export billing to a data warehouse.</div></details>
+        <details><summary><span class="dot"></span><span class="q">10) FinOps loop?</span></summary><div class="a">Inform (visibility), Optimize (rightsizing/commitments), and Operate (governance, budgets).</div></details>
+        <details><summary><span class="dot"></span><span class="q">11) DB cost levers?</span></summary><div class="a">Choose right engine/tier, read replicas vs over‑sizing, storage autoscale, and backup retention.</div></details>
+        <details><summary><span class="dot"></span><span class="q">12) Function pricing units?</span></summary><div class="a">Requests × (memory allocated × execution time) plus network/trigger costs.</div></details>
+        <details><summary><span class="dot"></span><span class="q">13) Data warehouse pricing?</span></summary><div class="a">Provisioned capacity vs serverless; storage billed separately; consider result cache and clustering.</div></details>
+        <details><summary><span class="dot"></span><span class="q">14) Logging costs?</span></summary><div class="a">Ingestion + retention; sample noisy logs, set shorter retention for debug environments, export to cold storage.</div></details>
+        <details><summary><span class="dot"></span><span class="q">15) Savings plans vs RIs?</span></summary><div class="a">Savings plans are flexible across families; RIs are instance/region specific but can be cheaper in cases.</div></details>
+        <details><summary><span class="dot"></span><span class="q">16) Cost of HA?</span></summary><div class="a">Multi‑AZ doubles some resources; weigh against RTO/SLO risk; use asynchronous read replicas when possible.</div></details>
+        <details><summary><span class="dot"></span><span class="q">17) KPI for cost efficiency?</span></summary><div class="a">$/request, $/transaction, $/user, or cost‑to‑serve aligned with business metrics.</div></details>
+        <details><summary><span class="dot"></span><span class="q">18) Budget enforcement?</span></summary><div class="a">Budgets with action policies, org policies to block expensive SKUs, and automated teardown.</div></details>
+        <details><summary><span class="dot"></span><span class="q">19) Tag hygiene?</span></summary><div class="a">Mandatory keys like <code>env</code>, <code>owner</code>, <code>cost_center</code>, <code>app</code>; validate via policy and CI.</div></details>
+        <details><summary><span class="dot"></span><span class="q">20) Quick wins for new tenants?</span></summary><div class="a">Turn on budget alerts, disable public IP by default, set lifecycle rules, and schedule dev shutdowns.</div></details>
+      </div>
+    </section>
+
+    <!-- ===== Topic 7: AWS/Azure/GCP ===== -->
+    <section class="topic" id="clouds">
+      <h2><span class="chip">Topic 7</span> AWS / Azure / GCP</h2>
+      <div class="controls"><button data-expand="#clouds">Expand</button><button class="secondary" data-collapse="#clouds">Collapse</button></div>
+      <div class="accordion">
+        <details><summary><span class="dot"></span><span class="q">1) Core compute equivalents?</span></summary><div class="a">AWS <code>EC2</code>, Azure <code>Virtual Machines</code>, GCP <code>Compute Engine</code>.</div></details>
+        <details><summary><span class="dot"></span><span class="q">2) Managed Kubernetes?</span></summary><div class="a">EKS (AWS), AKS (Azure), GKE (GCP).</div></details>
+        <details><summary><span class="dot"></span><span class="q">3) Object storage?</span></summary><div class="a">S3, Azure Blob Storage, Google Cloud Storage.</div></details>
+        <details><summary><span class="dot"></span><span class="q">4) Serverless functions?</span></summary><div class="a">Lambda, Azure Functions, Cloud Functions/Cloud Run Jobs.</div></details>
+        <details><summary><span class="dot"></span><span class="q">5) Data warehouse?</span></summary><div class="a">Redshift (AWS), Azure Synapse/SQL DW, BigQuery (GCP).</div></details>
+        <details><summary><span class="dot"></span><span class="q">6) IAM core concept?</span></summary><div class="a">AWS IAM users/roles/policies; Azure Entra ID + RBAC; GCP IAM with principals/roles/policies.</div></details>
+        <details><summary><span class="dot"></span><span class="q">7) Networking primitives?</span></summary><div class="a">VPC (all three) with subnets, route tables; Security Groups (AWS/Azure NSGs), Firewalls (GCP).</div></details>
+        <details><summary><span class="dot"></span><span class="q">8) DevOps/IaC tools?</span></summary><div class="a">CloudFormation/CDK, Bicep/ARM, Deployment Manager; multi‑cloud: Terraform/Pulumi.</div></details>
+        <details><summary><span class="dot"></span><span class="q">9) Monitoring stacks?</span></summary><div class="a">CloudWatch, Azure Monitor (Log Analytics + App Insights), Cloud Monitoring/Logging.</div></details>
+        <details><summary><span class="dot"></span><span class="q">10) Database managed services?</span></summary><div class="a">RDS/Aurora, Azure SQL/Database for PostgreSQL, Cloud SQL/Spanner/Firestore.</div></details>
+        <details><summary><span class="dot"></span><span class="q">11) AI/ML platforms?</span></summary><div class="a">SageMaker, Azure ML, Vertex AI.</div></details>
+        <details><summary><span class="dot"></span><span class="q">12) Queues and pub/sub?</span></summary><div class="a">SQS & SNS/EventBridge; Azure Storage Queues & Service Bus; Pub/Sub.</div></details>
+        <details><summary><span class="dot"></span><span class="q">13) CDN offerings?</span></summary><div class="a">CloudFront, Azure Front Door/CDN, Cloud CDN.</div></details>
+        <details><summary><span class="dot"></span><span class="q">14) Hybrid connectivity?</span></summary><div class="a">Direct Connect, ExpressRoute, Cloud Interconnect.</div></details>
+        <details><summary><span class="dot"></span><span class="q">15) Cost tooling?</span></summary><div class="a">AWS Cost Explorer/Budgets, Azure Cost Management, GCP Billing reports/BUCKET exports.</div></details>
+        <details><summary><span class="dot"></span><span class="q">16) Identity integration with Microsoft 365?</span></summary><div class="a">Tightest with Azure (Entra ID). AWS/GCP integrate via federation/SAML/OIDC.</div></details>
+        <details><summary><span class="dot"></span><span class="q">17) Data analytics strengths?</span></summary><div class="a">AWS breadth + Glue; Azure Synapse + Fabric ecosystem; GCP BigQuery + Dataflow + strong network.</div></details>
+        <details><summary><span class="dot"></span><span class="q">18) Free tiers?</span></summary><div class="a">All offer limited free usage; always check expiration (12‑month vs always‑free) and region limits.</div></details>
+        <details><summary><span class="dot"></span><span class="q">19) Security centers?</span></summary><div class="a">AWS Security Hub/GuardDuty; Microsoft Defender for Cloud; Security Command Center (GCP).</div></details>
+        <details><summary><span class="dot"></span><span class="q">20) Choosing a provider—quick rubric?</span></summary><div class="a">Match to skills, existing vendor deals, required services/regions, support model, and TCO including egress and ops.</div></details>
+      </div>
+    </section>
+
+    <footer>
+      Global: press <span class="kbd">/</span> to search this page. Use the buttons at top or per‑topic to expand/collapse. You can drop this file into your training site as‑is.
+    </footer>
+  </div>
+
+<script>
+  // Global expand/collapse
+  const expandAll = document.getElementById('expandAll');
+  const collapseAll = document.getElementById('collapseAll');
+  const allDetails = () => Array.from(document.querySelectorAll('details'));
+  expandAll.addEventListener('click', () => allDetails().forEach(d => d.open = true));
+  collapseAll.addEventListener('click', () => allDetails().forEach(d => d.open = false));
+
+  // Per‑topic expand/collapse
+  document.querySelectorAll('[data-expand]').forEach(btn => {
+    btn.addEventListener('click', () => {
+      document.querySelectorAll(btn.getAttribute('data-expand') + ' details').forEach(d => d.open = true);
+    });
+  });
+  document.querySelectorAll('[data-collapse]').forEach(btn => {
+    btn.addEventListener('click', () => {
+      document.querySelectorAll(btn.getAttribute('data-collapse') + ' details').forEach(d => d.open = false);
+    });
+  });
+</script>
+</body>
+</html>

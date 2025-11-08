@@ -1,0 +1,238 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>Big Data — Question Bank (20 Questions per Topic)</title>
+<style>
+  body { font-family: system-ui, -apple-system, Segoe UI, Roboto, Arial; margin:0; background:#0b1220; color:#e6eef8; }
+  header { padding:20px 24px; background:#121a2b; border-bottom:1px solid rgba(255,255,255,.08);}
+  h1 { margin:0; color:#a78bfa; font-size:28px; }
+  .meta { color:#9fb3c8; font-size:14px; }
+  main { padding:24px; max-width:1100px; margin:auto; }
+  section { background: rgba(255,255,255,.03); border:1px solid rgba(255,255,255,.08); border-radius:14px; padding:18px 20px; margin:18px 0 28px; }
+  h2 { color:#5eead4; margin-top:0; }
+  ol li { margin: 8px 0; }
+  footer { color:#9fb3c8; text-align:center; padding:24px; }
+  @media print { body { background:#fff; color:#000; } section { page-break-inside: avoid; } }
+</style>
+</head>
+<body>
+<header>
+  <h1>Big Data — Question Bank (20 Questions per Topic)</h1>
+  <div class="meta">Generated 2025-11-08 11:59 • Questions only (no answers)</div>
+</header>
+<main>
+  
+    <section id="big-data-fundamentals">
+      <h2>Big Data Fundamentals</h2>
+      <ol>
+        <li>Define Big Data and explain the 5Vs with a concrete example for each V.</li>
+<li>Differentiate data lake, data warehouse, and data lakehouse in one sentence each.</li>
+<li>Give three real-world business KPIs that Big Data improves and how.</li>
+<li>Explain the concept of schema-on-read vs schema-on-write with pros/cons.</li>
+<li>What makes a workload 'big data' vs a standard OLTP workload? Provide two technical indicators.</li>
+<li>Describe batch vs streaming analytics and when you would prefer each.</li>
+<li>What is eventual consistency? Give one scenario where it is acceptable and one where it is not.</li>
+<li>You observe data skew during a distributed join. What is it and why is it harmful?</li>
+<li>List four forms of denormalization commonly used in analytical modeling and why they help.</li>
+<li>Explain time-travel in modern table formats and one use case for audit/compliance.</li>
+<li>What are idempotent operations? Why do they matter in pipelines?</li>
+<li>Design a minimal Big Data stack for a startup analyzing clickstream data (ingest → store → process → serve).</li>
+<li>What is late-arriving data? Outline two ways to handle it in analytics.</li>
+<li>Explain cold, warm, and hot data tiers with example retention durations.</li>
+<li>Define data contract. What fields belong in a basic event contract for orders?</li>
+<li>Compare horizontal vs vertical scaling in the context of big data systems.</li>
+<li>What is predicate pushdown and why does it reduce cost?</li>
+<li>Give three reasons to choose columnar formats for analytics.</li>
+<li>When would you choose serverless analytics vs managed clusters? Provide two trade-offs.</li>
+<li>Write a brief checklist to verify a dataset is analysis-ready before modeling.</li>
+      </ol>
+    </section>
+    
+    <section id="components-of-big-data">
+      <h2>Components of Big Data</h2>
+      <ol>
+        <li>Name two ingestion tools per mode: batch and streaming; give one strength of each.</li>
+<li>Explain CDC. How would Debezium capture deletes and updates from MySQL?</li>
+<li>Why might you place Kafka in front of a data lake even for batch use cases?</li>
+<li>Compare HDFS, S3/ADLS, and Bigtable in terms of access pattern and durability.</li>
+<li>Describe a reliable pattern to load data from Kafka into a lakehouse table with exactly-once semantics.</li>
+<li>What metadata/catalog components are required for a governed lake?</li>
+<li>Outline how dbt/Dataform fits in an ELT stack; which layer(s) do they transform?</li>
+<li>How would you use Great Expectations to stop bad data from reaching Gold tables?</li>
+<li>Compare Spark, Flink, and Beam for stream processing in two dimensions each.</li>
+<li>What is the role of orchestration (Airflow/Composer)? Give three common DAG tasks.</li>
+<li>Explain feature store purpose and how it prevents training/serving skew.</li>
+<li>Design the serving layer for near–real-time dashboards with sub-minute latency.</li>
+<li>What is compaction and why is it essential for lakes receiving small files?</li>
+<li>List two strategies to protect PII at ingestion time.</li>
+<li>How do you manage secrets (e.g., database creds) across components securely?</li>
+<li>Describe blue/green deployment for pipelines and why it helps reliability.</li>
+<li>What is data lineage? Name one open standard or tool that captures it.</li>
+<li>How would you structure project repos to separate infra-as-code, pipelines, and SQL models?</li>
+<li>Give two approaches to implement SCD Type 2 in a lakehouse.</li>
+<li>Sketch the handoffs and contracts between ingestion, transformation, and BI teams.</li>
+      </ol>
+    </section>
+    
+    <section id="architecture">
+      <h2>Architecture</h2>
+      <ol>
+        <li>Draw (describe) a Lambda architecture and list where batch and speed layers merge.</li>
+<li>Contrast Lambda vs Kappa architecture with one pro and one con for each.</li>
+<li>Explain medallion (Bronze/Silver/Gold) layering and why each layer exists.</li>
+<li>Where would you apply row-level vs column-level security in a lakehouse?</li>
+<li>Propose a multi-project (dev/stage/prod) cloud architecture with IAM boundaries.</li>
+<li>How should partitions and clusters be chosen for a fact table with time-series data?</li>
+<li>What is data mesh? Provide two principles and one challenge in implementation.</li>
+<li>When do you use materialized views vs tables vs views in a warehouse?</li>
+<li>Design cross-region DR for a critical analytics platform; list RPO/RTO targets.</li>
+<li>Describe a reference network architecture for secure data access (private endpoints, VPC peering).</li>
+<li>What is a control plane vs data plane in big data platforms? Give examples.</li>
+<li>How do you design for backfills without disrupting downstream consumers?</li>
+<li>Where do you validate schema evolution and how do you roll back safely?</li>
+<li>Explain the role of a metadata/catalog service in query planning and governance.</li>
+<li>What trade-offs exist between unified lakehouse vs separate lake + warehouse?</li>
+<li>How will you support both batch ML training and real-time inference from one platform?</li>
+<li>Propose an event-driven architecture for invoice processing from ingestion to BI.</li>
+<li>Give an architecture that enables cost attribution per team (FinOps) with tags/labels.</li>
+<li>How would you isolate noisy neighbors in shared compute (workload management)?</li>
+<li>List the minimal SLIs/SLOs you publish for the analytics platform as a service.</li>
+      </ol>
+    </section>
+    
+    <section id="benefits">
+      <h2>Benefits</h2>
+      <ol>
+        <li>Name four business benefits from implementing a modern data platform.</li>
+<li>How can Big Data reduce customer churn? Outline a simple model and data needed.</li>
+<li>Give an example where Big Data creates new revenue vs only cost savings.</li>
+<li>Explain how experimentation/A-B testing depends on a solid data platform.</li>
+<li>Describe how advanced analytics improves supply chain forecasting accuracy.</li>
+<li>How can a feature store accelerate ML delivery for multiple teams?</li>
+<li>What is the benefit of time-travel/versioned tables for analysts and auditors?</li>
+<li>Discuss how near–real-time analytics improves operations for ride-sharing apps.</li>
+<li>Explain how Big Data supports regulatory reporting with reproducibility.</li>
+<li>How does separating storage from compute reduce cost and improve agility?</li>
+<li>Show how self-serve semantic layers improve BI developer productivity.</li>
+<li>List benefits of central lineage and data catalog for large enterprises.</li>
+<li>How can streaming analytics reduce fraud losses; describe an alerting loop.</li>
+<li>Give two ways Big Data helps marketing attribution across channels.</li>
+<li>Describe how a lakehouse simplifies AI enablement compared to legacy DW.</li>
+<li>Explain the business value of data contracts for upstream product teams.</li>
+<li>How do ML-driven forecasts improve staffing and capacity planning?</li>
+<li>How can Big Data enable personalization in e-commerce in three steps?</li>
+<li>What are the benefits of adopting standardized file/table formats across teams?</li>
+<li>Provide a short case study (3–4 lines) where Big Data improved a KPI by ≥10%.</li>
+      </ol>
+    </section>
+    
+    <section id="challenges">
+      <h2>Challenges</h2>
+      <ol>
+        <li>List five common data quality issues and their typical detection methods.</li>
+<li>Explain small-files problem and two strategies to mitigate it.</li>
+<li>How do you budget and control warehouse query costs month to month?</li>
+<li>What are the risks of unrestricted self-serve SQL in production datasets?</li>
+<li>Describe three privacy-preserving techniques for analytics (masking, tokenization, DP).</li>
+<li>How do you prevent schema drift from breaking downstream pipelines?</li>
+<li>What are hot partitions, and how do you avoid them?</li>
+<li>Explain join skew and three techniques to address it (salting, broadcasting, repartitioning).</li>
+<li>How do you manage breaking changes to event schemas in streaming systems?</li>
+<li>What is the impact of late and out-of-order events on windowed aggregations?</li>
+<li>List controls to secure service accounts and secrets in pipelines.</li>
+<li>Describe governance processes for PII access requests and approvals.</li>
+<li>How do you measure and reduce end-to-end pipeline latency?</li>
+<li>Explain the trade-offs between real-time freshness and result accuracy.</li>
+<li>What failure modes do you design for in distributed jobs (idempotency, retries)?</li>
+<li>How do you ensure reproducibility of transformations across environments?</li>
+<li>Outline a rollback plan when a faulty model corrupts Gold tables.</li>
+<li>What vendor lock-in risks exist in cloud-native big data stacks?</li>
+<li>Describe data sovereignty challenges and how to comply with region laws.</li>
+<li>How do you monitor data SLAs and alert when SLIs breach thresholds?</li>
+      </ol>
+    </section>
+    
+    <section id="data-lifecycle-stages">
+      <h2>Data Lifecycle Stages</h2>
+      <ol>
+        <li>For each stage (Generate→Archive), give one concrete tool or pattern you would use.</li>
+<li>Design an ingestion layer that supports both batch and stream for the same source.</li>
+<li>What metadata should be captured at ingestion to enable lineage and audits?</li>
+<li>Describe a schema registry’s role across lifecycle stages.</li>
+<li>Explain how you validate, quarantine, and reprocess bad records.</li>
+<li>What policies determine data retention vs deletion? Provide two examples.</li>
+<li>Show how you’d implement GDPR Right-to-Be-Forgotten in a lakehouse.</li>
+<li>How are slowly changing dimensions handled during the Process stage?</li>
+<li>What checkpoints and offsets are tracked in the streaming stage?</li>
+<li>Describe versioning of datasets and reproducible backfills.</li>
+<li>How do you publish and deprecate marts without breaking dashboards?</li>
+<li>What caching strategies exist in the Serve stage to reduce BI latency?</li>
+<li>Explain how feature engineering is embedded in the lifecycle for ML.</li>
+<li>What’s the lifecycle for ML models themselves (MLOps) tied to data stages?</li>
+<li>How would you design automated data quality tests at each stage?</li>
+<li>Describe how to propagate business glossary terms from Silver to Gold.</li>
+<li>What access patterns change across stages and how do ACLs adapt?</li>
+<li>Show a lifecycle swimlane diagram (text) mapping owners to each stage.</li>
+<li>How do you archive cold data while preserving queryability when needed?</li>
+<li>What logs and metrics would you retain to debug lifecycle regressions?</li>
+      </ol>
+    </section>
+    
+    <section id="types-of-data:-structured---semi-structured---unstructured">
+      <h2>Types of Data: Structured / Semi-structured / Unstructured</h2>
+      <ol>
+        <li>Give an example dataset for each type and the ideal storage/query engine.</li>
+<li>What SQL features enable querying nested JSON efficiently? Provide two.</li>
+<li>Describe three pitfalls when modeling semi-structured data in analytics.</li>
+<li>When would you convert JSON to Parquet and why?</li>
+<li>Explain extracting entities from PDFs and images for analytics use.</li>
+<li>Compare indexing strategies for logs vs relational tables.</li>
+<li>How do you validate JSON schemas and manage evolution safely?</li>
+<li>Provide two join patterns when mixing structured and semi-structured data.</li>
+<li>What is vector embedding storage and how does it relate to unstructured data?</li>
+<li>Design a pipeline that enriches unstructured text with NLP and lands features in a warehouse.</li>
+<li>Explain row vs columnar storage impacts for structured vs semi-structured workloads.</li>
+<li>What is the cost impact of storing large blobs in a warehouse vs object store?</li>
+<li>How would you search millions of PDFs by content and metadata efficiently?</li>
+<li>What’s the difference between JSON Lines and standard JSON for streaming?</li>
+<li>When is XML still a sensible choice? Give one domain case.</li>
+<li>How do you handle character encodings and locale issues in semi-structured logs?</li>
+<li>Give a benchmarking plan to compare query time for JSON vs Parquet versions of the same data.</li>
+<li>Explain late field arrival in JSON and a pattern to avoid breaking transformations.</li>
+<li>How can computer vision features be joined to transactional facts for BI?</li>
+<li>List two trade-offs when storing unstructured data with CDN acceleration.</li>
+      </ol>
+    </section>
+    
+    <section id="file-types">
+      <h2>File Types</h2>
+      <ol>
+        <li>Contrast CSV vs Parquet on storage size, scan cost, and schema handling.</li>
+<li>When would you choose Avro over Parquet in a pipeline?</li>
+<li>Explain column pruning and predicate pushdown in Parquet/ORC.</li>
+<li>What table formats (Delta/Iceberg/Hudi) add beyond basic Parquet files?</li>
+<li>How do small files hurt query engines and what compaction metrics do you track?</li>
+<li>Design a partitioning scheme for a sales fact table and justify your choices.</li>
+<li>Explain the dangers of mixed compression codecs within one dataset.</li>
+<li>What is statistics metadata in columnar files and how is it used?</li>
+<li>Give steps to convert a raw CSV lake to Parquet with proper typing and partitioning.</li>
+<li>How would you implement ACID upserts on top of object storage?</li>
+<li>Compare copy-on-write vs merge-on-read strategies in table formats.</li>
+<li>What is VACUUM/OPTIMIZE (or equivalent) and when should it run?</li>
+<li>Explain schema evolution rules (add/rename/delete) for Parquet files.</li>
+<li>How do you ensure file-level encryption at rest and in transit?</li>
+<li>What’s the difference between external tables and managed tables?</li>
+<li>Describe manifest listing vs metastore/catalog-based table discovery.</li>
+<li>When should you use JSONL over CSV for event logging?</li>
+<li>What file size targets do you set for optimal analytics reads and why?</li>
+<li>How do you validate that writers are producing partition-aligned files correctly?</li>
+<li>Provide a migration checklist to move from CSV to a lakehouse table format.</li>
+      </ol>
+    </section>
+    
+</main>
+<footer>© 2025 Big Data Question Bank</footer>
+</body>
+</html>

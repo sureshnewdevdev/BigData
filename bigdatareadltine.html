@@ -1,0 +1,1394 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Data Warehousing Mastery Guide - Complete</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            line-height: 1.6;
+            color: #333;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            min-height: 100vh;
+        }
+        
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+        
+        .header {
+            background: white;
+            border-radius: 15px;
+            padding: 30px;
+            margin-bottom: 30px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+            text-align: center;
+        }
+        
+        .header h1 {
+            color: #2c3e50;
+            font-size: 2.5em;
+            margin-bottom: 10px;
+        }
+        
+        .header .subtitle {
+            color: #7f8c8d;
+            font-size: 1.2em;
+        }
+        
+        .toc {
+            background: white;
+            border-radius: 15px;
+            padding: 30px;
+            margin-bottom: 30px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+        }
+        
+        .toc h2 {
+            color: #2c3e50;
+            margin-bottom: 20px;
+            border-bottom: 3px solid #3498db;
+            padding-bottom: 10px;
+        }
+        
+        .toc ol {
+            list-style-type: none;
+            counter-reset: toc-counter;
+        }
+        
+        .toc li {
+            counter-increment: toc-counter;
+            margin-bottom: 15px;
+            padding: 15px;
+            background: #f8f9fa;
+            border-radius: 8px;
+            border-left: 4px solid #3498db;
+        }
+        
+        .toc li:before {
+            content: counter(toc-counter);
+            background: #3498db;
+            color: white;
+            font-weight: bold;
+            padding: 5px 10px;
+            border-radius: 50%;
+            margin-right: 15px;
+        }
+        
+        .section {
+            background: white;
+            border-radius: 15px;
+            padding: 30px;
+            margin-bottom: 30px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+        }
+        
+        .section h2 {
+            color: #2c3e50;
+            margin-bottom: 20px;
+            border-bottom: 3px solid #e74c3c;
+            padding-bottom: 10px;
+        }
+        
+        .section h3 {
+            color: #34495e;
+            margin: 25px 0 15px 0;
+        }
+        
+        .subsection {
+            margin: 20px 0;
+            padding: 20px;
+            background: #f8f9fa;
+            border-radius: 10px;
+            border-left: 4px solid #9b59b6;
+        }
+        
+        .code-block {
+            background: #2c3e50;
+            color: #ecf0f1;
+            padding: 20px;
+            border-radius: 8px;
+            margin: 15px 0;
+            overflow-x: auto;
+            font-family: 'Courier New', monospace;
+        }
+        
+        .comparison-table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 20px 0;
+            background: white;
+            border-radius: 8px;
+            overflow: hidden;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+        }
+        
+        .comparison-table th {
+            background: #34495e;
+            color: white;
+            padding: 15px;
+            text-align: left;
+        }
+        
+        .comparison-table td {
+            padding: 12px 15px;
+            border-bottom: 1px solid #ecf0f1;
+        }
+        
+        .comparison-table tr:nth-child(even) {
+            background: #f8f9fa;
+        }
+        
+        .architecture-diagram {
+            background: #ecf0f1;
+            padding: 20px;
+            border-radius: 8px;
+            margin: 20px 0;
+            font-family: 'Courier New', monospace;
+            line-height: 1.8;
+        }
+        
+        .highlight {
+            background: #fff3cd;
+            padding: 15px;
+            border-left: 4px solid #ffc107;
+            margin: 15px 0;
+            border-radius: 0 8px 8px 0;
+        }
+        
+        .download-btn {
+            display: inline-block;
+            background: #27ae60;
+            color: white;
+            padding: 12px 25px;
+            text-decoration: none;
+            border-radius: 8px;
+            font-weight: bold;
+            margin: 10px 5px;
+            transition: background 0.3s;
+        }
+        
+        .download-btn:hover {
+            background: #219a52;
+        }
+
+        .note-box {
+            background: #d4edda;
+            border-left: 4px solid #28a745;
+            padding: 15px;
+            margin: 15px 0;
+            border-radius: 0 8px 8px 0;
+        }
+
+        .warning-box {
+            background: #f8d7da;
+            border-left: 4px solid #dc3545;
+            padding: 15px;
+            margin: 15px 0;
+            border-radius: 0 8px 8px 0;
+        }
+
+        @media (max-width: 768px) {
+            .container {
+                padding: 10px;
+            }
+            
+            .header h1 {
+                font-size: 2em;
+            }
+            
+            .section {
+                padding: 20px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <h1>🧠 Python SQL Competency – Data Warehousing Comprehensive Mastery Guide</h1>
+            <div class="subtitle">Complete Guide from Fundamentals to Advanced Implementation</div>
+        </div>
+
+        <div class="toc">
+            <h2>📚 Table of Contents</h2>
+            <ol>
+                <li><a href="#section1">Data Warehousing Deep Dive</a></li>
+                <li><a href="#section2">Data Store Vendors Mastery</a></li>
+                <li><a href="#section3">OLTP vs OLAP Systems</a></li>
+                <li><a href="#section4">DWH vs Data Lake Comprehensive Guide</a></li>
+                <li><a href="#section5">DWH Architecture Patterns</a></li>
+                <li><a href="#section6">Operational Data Store (ODS)</a></li>
+                <li><a href="#section7">Data Mart Implementation</a></li>
+                <li><a href="#section8">Data Cleansing Techniques</a></li>
+                <li><a href="#section9">Hands-On Projects</a></li>
+                <li><a href="#section10">Industry Best Practices</a></li>
+            </ol>
+        </div>
+
+        <!-- Section 5: DWH Architecture Patterns -->
+        <div id="section5" class="section">
+            <h2>5. DWH Architecture Patterns</h2>
+            
+            <div class="subsection">
+                <h3>5.1 Architecture Comparison: Kimball vs Inmon</h3>
+                <table class="comparison-table">
+                    <thead>
+                        <tr>
+                            <th>Feature</th>
+                            <th>Kimball Approach</th>
+                            <th>Inmon Approach</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td><strong>Philosophy</strong></td>
+                            <td>Bottom-up, Business-driven</td>
+                            <td>Top-down, Enterprise-driven</td>
+                        </tr>
+                        <tr>
+                            <td><strong>Structure</strong></td>
+                            <td>Dimensional Model (Star Schema)</td>
+                            <td>Normalized (3NF) Enterprise Model</td>
+                        </tr>
+                        <tr>
+                            <td><strong>Implementation</strong></td>
+                            <td>Data Marts first, then integrate</td>
+                            <td>Enterprise DWH first, then data marts</td>
+                        </tr>
+                        <tr>
+                            <td><strong>Development Speed</strong></td>
+                            <td>Faster time-to-market</td>
+                            <td>Longer initial development</td>
+                        </tr>
+                        <tr>
+                            <td><strong>Flexibility</strong></td>
+                            <td>Less flexible for new requirements</td>
+                            <td>More flexible for future changes</td>
+                        </tr>
+                        <tr>
+                            <td><strong>Best For</strong></td>
+                            <td>Departmental reporting, BI</td>
+                            <td>Enterprise-wide integration</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+
+            <div class="subsection">
+                <h3>5.2 Data Vault 2.0 Architecture</h3>
+                <div class="highlight">
+                    <strong>Data Vault 2.0 Components:</strong><br>
+                    • <strong>Hubs</strong>: Business keys<br>
+                    • <strong>Links</strong>: Relationships between hubs<br>
+                    • <strong>Satellites</strong>: Descriptive attributes with history<br>
+                    • <strong>PIT (Point-in-Time)</strong>: Performance tables<br>
+                    • <strong>Bridge</strong>: Many-to-many relationships
+                </div>
+
+                <h4>Data Vault Implementation</h4>
+                <div class="code-block">
+-- Hubs: Business Keys<br>
+CREATE TABLE hub_customer (<br>
+    customer_hash_key VARCHAR(64) PRIMARY KEY,<br>
+    customer_id VARCHAR(50) NOT NULL,<br>
+    load_date TIMESTAMP NOT NULL,<br>
+    record_source VARCHAR(100) NOT NULL<br>
+);<br><br>
+
+-- Links: Relationships<br>
+CREATE TABLE link_customer_order (<br>
+    customer_order_hash_key VARCHAR(64) PRIMARY KEY,<br>
+    customer_hash_key VARCHAR(64) NOT NULL,<br>
+    order_hash_key VARCHAR(64) NOT NULL,<br>
+    load_date TIMESTAMP NOT NULL,<br>
+    record_source VARCHAR(100) NOT NULL,<br>
+    FOREIGN KEY (customer_hash_key) REFERENCES hub_customer(customer_hash_key),<br>
+    FOREIGN KEY (order_hash_key) REFERENCES hub_order(order_hash_key)<br>
+);<br><br>
+
+-- Satellites: Descriptive Data<br>
+CREATE TABLE sat_customer_details (<br>
+    customer_hash_key VARCHAR(64) NOT NULL,<br>
+    load_date TIMESTAMP NOT NULL,<br>
+    hash_diff VARCHAR(64) NOT NULL,<br>
+    customer_name VARCHAR(100),<br>
+    email VARCHAR(150),<br>
+    phone VARCHAR(20),<br>
+    effective_date DATE,<br>
+    end_date DATE,<br>
+    record_source VARCHAR(100) NOT NULL,<br>
+    PRIMARY KEY (customer_hash_key, load_date),<br>
+    FOREIGN KEY (customer_hash_key) REFERENCES hub_customer(customer_hash_key)<br>
+);
+                </div>
+            </div>
+
+            <div class="subsection">
+                <h3>5.3 Modern Cloud Architecture</h3>
+                <div class="architecture-diagram">
+┌─────────────────────────────────────────────────────────────┐<br>
+│                    CLOUD DATA WAREHOUSE ARCHITECTURE        │<br>
+├─────────────────────────────────────────────────────────────┤<br>
+│  LAYER                  COMPONENTS                          │<br>
+├─────────────────────────────────────────────────────────────┤<br>
+│  Ingestion Layer       • AWS Kinesis / Azure Event Hubs     │<br>
+│                       • Apache Kafka / Change Data Capture  │<br>
+├─────────────────────────────────────────────────────────────┤<br>
+│  Storage Layer        • Data Lake (S3/ADLS/GCS)            │<br>
+│                       • Cloud DWH (Snowflake/BigQuery)     │<br>
+├─────────────────────────────────────────────────────────────┤<br>
+│  Processing Layer     • Spark / Databricks                 │<br>
+│                       • dbt / Dataform                     │<br>
+│                       • Airflow / Prefect                  │<br>
+├─────────────────────────────────────────────────────────────┤<br>
+│  Serving Layer        • Data Marts                         │<br>
+│                       • Feature Store                      │<br>
+│                       • Reverse ETL (Hightouch/Census)     │<br>
+├─────────────────────────────────────────────────────────────┤<br>
+│  Consumption Layer    • BI Tools (Tableau/Power BI)        │<br>
+│                       • ML Platforms                       │<br>
+│                       • Operational Systems                │<br>
+└─────────────────────────────────────────────────────────────┘
+                </div>
+
+                <h4>Python: Cloud DWH Orchestration</h4>
+                <div class="code-block">
+from airflow import DAG<br>
+from airflow.providers.snowflake.operators.snowflake import SnowflakeOperator<br>
+from airflow.providers.amazon.aws.sensors.s3 import S3KeySensor<br>
+from datetime import datetime, timedelta<br><br>
+
+default_args = {<br>
+    'owner': 'data_team',<br>
+    'depends_on_past': False,<br>
+    'start_date': datetime(2024, 1, 1),<br>
+    'email_on_failure': True,<br>
+    'retries': 2,<br>
+    'retry_delay': timedelta(minutes=5)<br>
+}<br><br>
+
+with DAG('dwh_processing_pipeline', <br>
+         default_args=default_args,<br>
+         schedule_interval='@daily',<br>
+         catchup=False) as dag:<br><br>
+
+    # Check for new data in S3<br>
+    check_s3_data = S3KeySensor(<br>
+        task_id='check_s3_data',<br>
+        bucket_name='raw-data-bucket',<br>
+        bucket_key='sales/{{ ds }}/',<br>
+        aws_conn_id='aws_default'<br>
+    )<br><br>
+
+    # Load raw data to staging<br>
+    load_staging = SnowflakeOperator(<br>
+        task_id='load_staging',<br>
+        sql='sql/load_staging.sql',<br>
+        snowflake_conn_id='snowflake_default'<br>
+    )<br><br>
+
+    # Transform data using dbt<br>
+    run_dbt_transformations = SnowflakeOperator(<br>
+        task_id='run_dbt_transformations',<br>
+        sql='sql/run_dbt.sql',<br>
+        snowflake_conn_id='snowflake_default'<br>
+    )<br><br>
+
+    # Refresh materialized views<br>
+    refresh_views = SnowflakeOperator(<br>
+        task_id='refresh_views',<br>
+        sql='sql/refresh_views.sql',<br>
+        snowflake_conn_id='snowflake_default'<br>
+    )<br><br>
+
+    check_s3_data >> load_staging >> run_dbt_transformations >> refresh_views
+                </div>
+            </div>
+        </div>
+
+        <!-- Section 6: Operational Data Store (ODS) -->
+        <div id="section6" class="section">
+            <h2>6. Operational Data Store (ODS)</h2>
+            
+            <div class="subsection">
+                <h3>6.1 ODS Characteristics and Use Cases</h3>
+                <div class="highlight">
+                    <strong>ODS Key Features:</strong><br>
+                    • Near real-time data integration<br>
+                    • Subject-oriented and integrated<br>
+                    • Contains current or recent data only<br>
+                    • Supports operational reporting<br>
+                    • Serves as staging for Data Warehouse
+                </div>
+
+                <table class="comparison-table">
+                    <thead>
+                        <tr>
+                            <th>Aspect</th>
+                            <th>ODS</th>
+                            <th>Data Warehouse</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td><strong>Data Latency</strong></td>
+                            <td>Near real-time (minutes/hours)</td>
+                            <td>Batch (daily/weekly)</td>
+                        </tr>
+                        <tr>
+                            <td><strong>Data History</strong></td>
+                            <td>Short-term (30-90 days)</td>
+                            <td>Long-term (years)</td>
+                        </tr>
+                        <tr>
+                            <td><strong>Data Granularity</strong></td>
+                            <td>Transaction level</td>
+                            <td>Aggregated and summarized</td>
+                        </tr>
+                        <tr>
+                            <td><strong>Primary Use</strong></td>
+                            <td>Operational reporting</td>
+                            <td>Strategic analysis</td>
+                        </tr>
+                        <tr>
+                            <td><strong>Users</strong></td>
+                            <td>Operational staff</td>
+                            <td>Business analysts, executives</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+
+            <div class="subsection">
+                <h3>6.2 ODS Implementation Patterns</h3>
+                
+                <h4>SQL: ODS Schema Design</h4>
+                <div class="code-block">
+-- ODS Database for E-commerce<br>
+CREATE DATABASE ods_ecommerce;<br>
+USE ods_ecommerce;<br><br>
+
+-- Current state tables (no history)<br>
+CREATE TABLE ods_customers (<br>
+    customer_id INT PRIMARY KEY,<br>
+    customer_name VARCHAR(100),<br>
+    email VARCHAR(150),<br>
+    phone VARCHAR(20),<br>
+    address TEXT,<br>
+    city VARCHAR(50),<br>
+    status VARCHAR(20),<br>
+    last_updated TIMESTAMP DEFAULT CURRENT_TIMESTAMP,<br>
+    data_source VARCHAR(50)<br>
+);<br><br>
+
+CREATE TABLE ods_orders (<br>
+    order_id INT PRIMARY KEY,<br>
+    customer_id INT,<br>
+    order_date TIMESTAMP,<br>
+    total_amount DECIMAL(10,2),<br>
+    status VARCHAR(20),<br>
+    shipping_address TEXT,<br>
+    payment_method VARCHAR(50),<br>
+    last_updated TIMESTAMP DEFAULT CURRENT_TIMESTAMP,<br>
+    data_source VARCHAR(50),<br>
+    FOREIGN KEY (customer_id) REFERENCES ods_customers(customer_id)<br>
+);<br><br>
+
+-- Real-time inventory snapshot<br>
+CREATE TABLE ods_inventory (<br>
+    product_id INT,<br>
+    warehouse_id INT,<br>
+    current_stock INT,<br>
+    reserved_stock INT,<br>
+    available_stock INT GENERATED ALWAYS AS (current_stock - reserved_stock),<br>
+    last_updated TIMESTAMP DEFAULT CURRENT_TIMESTAMP,<br>
+    PRIMARY KEY (product_id, warehouse_id)<br>
+);
+                </div>
+
+                <h4>Python: Real-time ODS Data Sync</h4>
+                <div class="code-block">
+import psycopg2<br>
+import json<br>
+from datetime import datetime<br>
+import logging<br><br>
+
+class ODSManager:<br>
+    def __init__(self, ods_connection, source_connections):<br>
+        self.ods_conn = ods_connection<br>
+        self.source_conns = source_connections<br>
+        self.logger = logging.getLogger(__name__)<br>
+    <br>
+    def sync_customer_data(self):<br>
+        """Sync customer data from multiple sources to ODS"""<br>
+        try:<br>
+            # Sync from CRM system<br>
+            crm_customers = self._extract_crm_customers()<br>
+            self._upsert_ods_customers(crm_customers, 'crm_system')<br>
+            <br>
+            # Sync from e-commerce platform<br>
+            ecom_customers = self._extract_ecommerce_customers()<br>
+            self._upsert_ods_customers(ecom_customers, 'ecommerce_platform')<br>
+            <br>
+            self.logger.info("Customer data sync completed successfully")<br>
+            <br>
+        except Exception as e:<br>
+            self.logger.error(f"Customer sync failed: {e}")<br>
+            raise<br>
+    <br>
+    def _upsert_ods_customers(self, customers, data_source):<br>
+        """Upsert customer data into ODS"""<br>
+        cursor = self.ods_conn.cursor()<br>
+        <br>
+        for customer in customers:<br>
+            query = """<br>
+            INSERT INTO ods_customers <br>
+            (customer_id, customer_name, email, phone, address, city, status, data_source)<br>
+            VALUES (%s, %s, %s, %s, %s, %s, %s, %s)<br>
+            ON CONFLICT (customer_id) <br>
+            DO UPDATE SET<br>
+                customer_name = EXCLUDED.customer_name,<br>
+                email = EXCLUDED.email,<br>
+                phone = EXCLUDED.phone,<br>
+                address = EXCLUDED.address,<br>
+                city = EXCLUDED.city,<br>
+                status = EXCLUDED.status,<br>
+                data_source = EXCLUDED.data_source,<br>
+                last_updated = CURRENT_TIMESTAMP<br>
+            """<br>
+            <br>
+            cursor.execute(query, (<br>
+                customer['id'], customer['name'], customer['email'],<br>
+                customer['phone'], customer['address'], customer['city'],<br>
+                customer['status'], data_source<br>
+            ))<br>
+        <br>
+        self.ods_conn.commit()<br>
+        cursor.close()<br>
+    <br>
+    def get_operational_dashboard_data(self):<br>
+        """Get data for operational dashboard"""<br>
+        query = """<br>
+        SELECT <br>
+            DATE(last_updated) as report_date,<br>
+            COUNT(*) as total_customers,<br>
+            COUNT(CASE WHEN status = 'active' THEN 1 END) as active_customers,<br>
+            AVG(total_amount) as avg_order_value<br>
+        FROM ods_customers c<br>
+        LEFT JOIN ods_orders o ON c.customer_id = o.customer_id<br>
+        WHERE o.order_date >= CURRENT_DATE - INTERVAL '7 days'<br>
+        GROUP BY DATE(last_updated)<br>
+        ORDER BY report_date DESC<br>
+        LIMIT 30<br>
+        """<br>
+        <br>
+        cursor = self.ods_conn.cursor()<br>
+        cursor.execute(query)<br>
+        results = cursor.fetchall()<br>
+        cursor.close()<br>
+        <br>
+        return results<br><br>
+
+# Usage<br>
+ods_manager = ODSManager(ods_connection, source_connections)<br>
+ods_manager.sync_customer_data()<br>
+dashboard_data = ods_manager.get_operational_dashboard_data()
+                </div>
+            </div>
+        </div>
+
+        <!-- Section 7: Data Mart Implementation -->
+        <div id="section7" class="section">
+            <h2>7. Data Mart Implementation</h2>
+            
+            <div class="subsection">
+                <h3>7.1 Types of Data Marts</h3>
+                <table class="comparison-table">
+                    <thead>
+                        <tr>
+                            <th>Type</th>
+                            <th>Description</th>
+                            <th>Use Case</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td><strong>Dependent</strong></td>
+                            <td>Built from enterprise data warehouse</td>
+                            <td>Departmental reporting from centralized DWH</td>
+                        </tr>
+                        <tr>
+                            <td><strong>Independent</strong></td>
+                            <td>Built directly from source systems</td>
+                            <td>Quick departmental solutions</td>
+                        </tr>
+                        <tr>
+                            <td><strong>Hybrid</strong></td>
+                            <td>Combines data from DWH and other sources</td>
+                            <td>Complex departmental analytics</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+
+            <div class="subsection">
+                <h3>7.2 Sales Data Mart Implementation</h3>
+                
+                <h4>SQL: Sales Data Mart Schema</h4>
+                <div class="code-block">
+-- Sales Data Mart<br>
+CREATE SCHEMA sales_mart;<br><br>
+
+-- Sales Performance Fact Table<br>
+CREATE TABLE sales_mart.fact_sales_performance (<br>
+    sales_date DATE,<br>
+    product_key INT,<br>
+    customer_key INT,<br>
+    sales_territory_key INT,<br>
+    salesperson_key INT,<br>
+    sales_amount DECIMAL(15,2),<br>
+    quantity_sold INT,<br>
+    cost_amount DECIMAL(15,2),<br>
+    gross_profit DECIMAL(15,2),<br>
+    discount_amount DECIMAL(10,2),<br>
+    net_sales_amount DECIMAL(15,2),<br>
+    PRIMARY KEY (sales_date, product_key, customer_key)<br>
+);<br><br>
+
+-- Sales Territory Dimension<br>
+CREATE TABLE sales_mart.dim_sales_territory (<br>
+    territory_key INT PRIMARY KEY,<br>
+    territory_name VARCHAR(100),<br>
+    region VARCHAR(50),<br>
+    country VARCHAR(50),<br>
+    sales_manager VARCHAR(100),<br>
+    sales_target DECIMAL(15,2)<br>
+);<br><br>
+
+-- Sales Pipeline Fact Table<br>
+CREATE TABLE sales_mart.fact_sales_pipeline (<br>
+    opportunity_id INT PRIMARY KEY,<br>
+    account_key INT,<br>
+    product_key INT,<br>
+    sales_stage VARCHAR(50),<br>
+    probability DECIMAL(5,2),<br>
+    estimated_amount DECIMAL(15,2),<br>
+    expected_close_date DATE,<br>
+    created_date DATE,<br>
+    last_modified_date DATE<br>
+);<br><br>
+
+-- Create materialized view for sales dashboard<br>
+CREATE MATERIALIZED VIEW sales_mart.mv_daily_sales_summary AS<br>
+SELECT <br>
+    sales_date,<br>
+    territory_name,<br>
+    SUM(sales_amount) as daily_sales,<br>
+    SUM(quantity_sold) as total_quantity,<br>
+    COUNT(DISTINCT customer_key) as unique_customers,<br>
+    AVG(sales_amount) as avg_transaction_value<br>
+FROM sales_mart.fact_sales_performance f<br>
+JOIN sales_mart.dim_sales_territory t ON f.sales_territory_key = t.territory_key<br>
+GROUP BY sales_date, territory_name;
+                </div>
+
+                <h4>Python: Data Mart ETL Process</h4>
+                <div class="code-block">
+import pandas as pd<br>
+from sqlalchemy import create_engine<br>
+import logging<br><br>
+
+class DataMartManager:<br>
+    def __init__(self, dwh_connection, datamart_connection):<br>
+        self.dwh_engine = create_engine(dwh_connection)<br>
+        self.datamart_engine = create_engine(datamart_connection)<br>
+        self.logger = logging.getLogger(__name__)<br>
+    <br>
+    def refresh_sales_datamart(self, start_date, end_date):<br>
+        """Refresh sales data mart with latest data"""<br>
+        try:<br>
+            # Extract sales data from DWH<br>
+            sales_query = f"""<br>
+            SELECT <br>
+                dd.full_date as sales_date,<br>
+                dp.product_key,<br>
+                dc.customer_key,<br>
+                dst.territory_key,<br>
+                dsp.salesperson_key,<br>
+                fs.sales_amount,<br>
+                fs.quantity_sold,<br>
+                fs.unit_cost * fs.quantity_sold as cost_amount,<br>
+                fs.sales_amount - (fs.unit_cost * fs.quantity_sold) as gross_profit,<br>
+                fs.discount_amount<br>
+            FROM core_dwh.fact_sales fs<br>
+            JOIN core_dwh.dim_date dd ON fs.date_key = dd.date_key<br>
+            JOIN core_dwh.dim_product dp ON fs.product_key = dp.product_key<br>
+            JOIN core_dwh.dim_customer dc ON fs.customer_key = dc.customer_key<br>
+            JOIN core_dwh.dim_sales_territory dst ON fs.territory_key = dst.territory_key<br>
+            JOIN core_dwh.dim_salesperson dsp ON fs.salesperson_key = dsp.salesperson_key<br>
+            WHERE dd.full_date BETWEEN '{start_date}' AND '{end_date}'<br>
+            """<br>
+            <br>
+            sales_data = pd.read_sql(sales_query, self.dwh_engine)<br>
+            <br>
+            # Calculate net sales<br>
+            sales_data['net_sales_amount'] = sales_data['sales_amount'] - sales_data['discount_amount']<br>
+            <br>
+            # Load to data mart<br>
+            sales_data.to_sql('fact_sales_performance', self.datamart_engine, <br>
+                           if_exists='append', index=False, method='multi')<br>
+            <br>
+            self.logger.info(f"Loaded {len(sales_data)} sales records to data mart")<br>
+            <br>
+            # Refresh materialized views<br>
+            with self.datamart_engine.connect() as conn:<br>
+                conn.execute("REFRESH MATERIALIZED VIEW sales_mart.mv_daily_sales_summary")<br>
+            <br>
+            self.logger.info("Sales data mart refresh completed")<br>
+            <br>
+        except Exception as e:<br>
+            self.logger.error(f"Data mart refresh failed: {e}")<br>
+            raise<br>
+    <br>
+    def generate_sales_report(self, report_type='daily'):<br>
+        """Generate sales reports from data mart"""<br>
+        if report_type == 'daily':<br>
+            query = """<br>
+            SELECT <br>
+                sales_date,<br>
+                territory_name,<br>
+                daily_sales,<br>
+                total_quantity,<br>
+                unique_customers,<br>
+                avg_transaction_value<br>
+            FROM sales_mart.mv_daily_sales_summary<br>
+            WHERE sales_date >= CURRENT_DATE - INTERVAL '30 days'<br>
+            ORDER BY sales_date DESC, territory_name<br>
+            """<br>
+        elif report_type == 'performance':<br>
+            query = """<br>
+            SELECT <br>
+                territory_name,<br>
+                SUM(daily_sales) as total_sales,<br>
+                AVG(daily_sales) as avg_daily_sales,<br>
+                MAX(daily_sales) as best_day_sales<br>
+            FROM sales_mart.mv_daily_sales_summary<br>
+            WHERE sales_date >= CURRENT_DATE - INTERVAL '90 days'<br>
+            GROUP BY territory_name<br>
+            ORDER BY total_sales DESC<br>
+            """<br>
+        <br>
+        return pd.read_sql(query, self.datamart_engine)<br><br>
+
+# Usage<br>
+datamart_manager = DataMartManager(dwh_connection, datamart_connection)<br>
+datamart_manager.refresh_sales_datamart('2024-01-01', '2024-01-31')<br>
+daily_report = datamart_manager.generate_sales_report('daily')
+                </div>
+            </div>
+        </div>
+
+        <!-- Section 8: Data Cleansing Techniques -->
+        <div id="section8" class="section">
+            <h2>8. Data Cleansing Techniques</h2>
+            
+            <div class="subsection">
+                <h3>8.1 Common Data Quality Issues</h3>
+                <table class="comparison-table">
+                    <thead>
+                        <tr>
+                            <th>Issue Type</th>
+                            <th>Description</th>
+                            <th>Impact</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td><strong>Missing Values</strong></td>
+                            <td>Null or empty fields</td>
+                            <td>Incomplete analysis, biased results</td>
+                        </tr>
+                        <tr>
+                            <td><strong>Inconsistent Format</strong></td>
+                            <td>Different formats for same data</td>
+                            <td>Aggregation errors, reporting issues</td>
+                        </tr>
+                        <tr>
+                            <td><strong>Duplicates</strong></td>
+                            <td>Multiple records for same entity</td>
+                            <td>Overcounting, inaccurate metrics</td>
+                        </tr>
+                        <tr>
+                            <td><strong>Outliers</strong></td>
+                            <td>Extreme values outside normal range</td>
+                            <td>Skewed analysis, incorrect insights</td>
+                        </tr>
+                        <tr>
+                            <td><strong>Invalid Values</strong></td>
+                            <td>Data outside valid domain</td>
+                            <td>Processing errors, system failures</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+
+            <div class="subsection">
+                <h3>8.2 Data Cleansing Implementation</h3>
+                
+                <h4>SQL: Data Quality Checks and Cleansing</h4>
+                <div class="code-block">
+-- Data Quality Assessment Queries<br><br>
+
+-- Check for missing values<br>
+SELECT <br>
+    COUNT(*) as total_records,<br>
+    COUNT(customer_id) as non_null_customers,<br>
+    COUNT(email) as non_null_emails,<br>
+    ROUND(COUNT(email) * 100.0 / COUNT(*), 2) as email_completeness_rate<br>
+FROM raw_customers;<br><br>
+
+-- Identify duplicate customers<br>
+WITH duplicate_cte AS (<br>
+    SELECT <br>
+        customer_id,<br>
+        email,<br>
+        COUNT(*) as duplicate_count<br>
+    FROM raw_customers<br>
+    GROUP BY customer_id, email<br>
+    HAVING COUNT(*) > 1<br>
+)<br>
+SELECT * FROM duplicate_cte<br>
+ORDER BY duplicate_count DESC;<br><br>
+
+-- Data Cleansing Operations<br><br>
+
+-- Remove duplicates keeping the latest record<br>
+WITH ranked_customers AS (<br>
+    SELECT *,<br>
+           ROW_NUMBER() OVER (<br>
+               PARTITION BY customer_id, email <br>
+               ORDER BY last_updated DESC<br>
+           ) as rn<br>
+    FROM raw_customers<br>
+)<br>
+DELETE FROM ranked_customers WHERE rn > 1;<br><br>
+
+-- Standardize phone numbers<br>
+UPDATE raw_customers<br>
+SET phone = REGEXP_REPLACE(<br>
+    REGEXP_REPLACE(phone, '[^0-9]', ''),  -- Remove non-numeric<br>
+    '^1?(\d{3})(\d{3})(\d{4})$', <br>
+    '(\1) \2-\3'<br>
+)<br>
+WHERE phone IS NOT NULL;<br><br>
+
+-- Handle missing values<br>
+UPDATE raw_customers<br>
+SET <br>
+    city = COALESCE(city, 'Unknown'),<br>
+    country = COALESCE(country, 'Unknown'),<br>
+    status = COALESCE(status, 'active')<br>
+WHERE city IS NULL OR country IS NULL OR status IS NULL;<br><br>
+
+-- Validate and correct email formats<br>
+UPDATE raw_customers<br>
+SET email = LOWER(TRIM(email))<br>
+WHERE email ~ '^[A-Za-z0-9._%+-]+@[A-Za-z0-9.-]+\.[A-Z|a-z]{2,}$';
+                </div>
+
+                <h4>Python: Advanced Data Cleansing Pipeline</h4>
+                <div class="code-block">
+import pandas as pd<br>
+import numpy as np<br>
+import re<br>
+from datetime import datetime<br>
+import phonenumbers<br>
+from email_validator import validate_email, EmailNotValidError<br><br>
+
+class DataCleanser:<br>
+    def __init__(self):<br>
+        self.cleaning_rules = {}<br>
+        self.quality_metrics = {}<br>
+    <br>
+    def clean_customer_data(self, df):<br>
+        """Comprehensive customer data cleaning"""<br>
+        original_count = len(df)<br>
+        <br>
+        # Remove exact duplicates<br>
+        df = self.remove_duplicates(df)<br>
+        <br>
+        # Clean and standardize text fields<br>
+        df = self.clean_text_fields(df)<br>
+        <br>
+        # Validate and format emails<br>
+        df = self.clean_email_addresses(df)<br>
+        <br>
+        # Standardize phone numbers<br>
+        df = self.clean_phone_numbers(df)<br>
+        <br>
+        # Handle missing values<br>
+        df = self.handle_missing_values(df)<br>
+        <br>
+        # Validate data types and ranges<br>
+        df = self.validate_data_ranges(df)<br>
+        <br>
+        # Calculate quality metrics<br>
+        self.calculate_quality_metrics(df, original_count)<br>
+        <br>
+        return df<br>
+    <br>
+    def remove_duplicates(self, df):<br>
+        """Remove duplicate records"""<br>
+        # Remove exact duplicates<br>
+        df = df.drop_duplicates()<br>
+        <br>
+        # Remove fuzzy duplicates based on key fields<br>
+        df = df.drop_duplicates(<br>
+            subset=['email', 'phone'], <br>
+            keep='first'<br>
+        )<br>
+        <br>
+        return df<br>
+    <br>
+    def clean_text_fields(self, df):<br>
+        """Clean and standardize text fields"""<br>
+        text_columns = ['first_name', 'last_name', 'city', 'country']<br>
+        <br>
+        for col in text_columns:<br>
+            if col in df.columns:<br>
+                # Remove extra whitespace<br>
+                df[col] = df[col].astype(str).str.strip()<br>
+                # Title case for names<br>
+                if col in ['first_name', 'last_name', 'city']:<br>
+                    df[col] = df[col].str.title()<br>
+        <br>
+        return df<br>
+    <br>
+    def clean_email_addresses(self, df):<br>
+        """Validate and standardize email addresses"""<br>
+        if 'email' in df.columns:<br>
+            df['email'] = df['email'].astype(str).str.lower().str.strip()<br>
+            <br>
+            # Remove invalid emails<br>
+            def is_valid_email(email):<br>
+                try:<br>
+                    validate_email(email)<br>
+                    return True<br>
+                except EmailNotValidError:<br>
+                    return False<br>
+            <br>
+            df['is_valid_email'] = df['email'].apply(is_valid_email)<br>
+            <br>
+        return df<br>
+    <br>
+    def clean_phone_numbers(self, df):<br>
+        """Standardize phone number formats"""<br>
+        if 'phone' in df.columns:<br>
+            def format_phone_number(phone):<br>
+                if pd.isna(phone) or phone == '':<br>
+                    return None<br>
+                <br>
+                try:<br>
+                    # Parse phone number<br>
+                    parsed = phonenumbers.parse(str(phone), "US")<br>
+                    if phonenumbers.is_valid_number(parsed):<br>
+                        return phonenumbers.format_number(<br>
+                            parsed, <br>
+                            phonenumbers.PhoneNumberFormat.E164<br>
+                        )<br>
+                except:<br>
+                    pass<br>
+                <br>
+                return None<br>
+            <br>
+            df['phone_clean'] = df['phone'].apply(format_phone_number)<br>
+        <br>
+        return df<br>
+    <br>
+    def handle_missing_values(self, df):<br>
+        """Handle missing values appropriately"""<br>
+        # For categorical fields, use 'Unknown'<br>
+        categorical_cols = ['city', 'country', 'status']<br>
+        for col in categorical_cols:<br>
+            if col in df.columns:<br>
+                df[col] = df[col].fillna('Unknown')<br>
+        <br>
+        # For numeric fields, use median<br>
+        numeric_cols = ['age', 'income']<br>
+        for col in numeric_cols:<br>
+            if col in df.columns:<br>
+                df[col] = df[col].fillna(df[col].median())<br>
+        <br>
+        return df<br>
+    <br>
+    def validate_data_ranges(self, df):<br>
+        """Validate data ranges and fix outliers"""<br>
+        # Validate age range<br>
+        if 'age' in df.columns:<br>
+            df['age'] = df['age'].clip(lower=0, upper=120)<br>
+        <br>
+        # Validate income (remove negative values)<br>
+        if 'income' in df.columns:<br>
+            df['income'] = df['income'].clip(lower=0)<br>
+        <br>
+        return df<br>
+    <br>
+    def calculate_quality_metrics(self, df, original_count):<br>
+        """Calculate data quality metrics"""<br>
+        self.quality_metrics = {<br>
+            'original_record_count': original_count,<br>
+            'cleaned_record_count': len(df),<br>
+            'completeness_rate': (len(df) / original_count) * 100,<br>
+            'email_validity_rate': (df['is_valid_email'].sum() / len(df)) * 100,<br>
+            'phone_validity_rate': (df['phone_clean'].notna().sum() / len(df)) * 100<br>
+        }<br><br>
+
+# Usage<br>
+cleanser = DataCleanser()<br>
+raw_customers = pd.read_csv('raw_customers.csv')<br>
+cleaned_customers = cleanser.clean_customer_data(raw_customers)<br>
+print(f"Quality Metrics: {cleanser.quality_metrics}")
+                </div>
+            </div>
+        </div>
+
+        <!-- Section 9: Hands-On Projects -->
+        <div id="section9" class="section">
+            <h2>9. Hands-On Projects</h2>
+            
+            <div class="subsection">
+                <h3>9.1 Project 1: E-commerce Data Warehouse</h3>
+                <div class="highlight">
+                    <strong>Project Scope:</strong><br>
+                    • Build end-to-end e-commerce DWH<br>
+                    • Implement Kimball dimensional model<br>
+                    • Create ETL pipelines with Python<br>
+                    • Build interactive dashboards
+                </div>
+
+                <h4>Complete Implementation Architecture</h4>
+                <div class="code-block">
+-- Project Structure<br>
+ecommerce_dwh/<br>
+├── sql/<br>
+│   ├── ddl/<br>
+│   │   ├── create_schemas.sql<br>
+│   │   ├── create_dimensions.sql<br>
+│   │   └── create_facts.sql<br>
+│   ├── etl/<br>
+│   │   ├── load_staging.sql<br>
+│   │   ├── transform_data.sql<br>
+│   │   └── load_dwh.sql<br>
+│   └── queries/<br>
+│       ├── business_queries.sql<br>
+│       └── dashboard_queries.sql<br>
+├── python/<br>
+│   ├── etl_pipeline.py<br>
+│   ├── data_quality.py<br>
+│   └── monitoring.py<br>
+├── config/<br>
+│   ├── database_config.json<br>
+│   └── etl_config.yaml<br>
+└── docs/<br>
+    ├── architecture.md<br>
+    └── user_guide.md
+                </div>
+
+                <h4>Main ETL Pipeline</h4>
+                <div class="code-block">
+import yaml<br>
+import pandas as pd<br>
+from sqlalchemy import create_engine<br>
+from datetime import datetime, timedelta<br>
+import logging<br><br>
+
+class EcommerceDWH:<br>
+    def __init__(self, config_path):<br>
+        with open(config_path, 'r') as file:<br>
+            self.config = yaml.safe_load(file)<br>
+        <br>
+        self.setup_logging()<br>
+        self.setup_database_connections()<br>
+    <br>
+    def setup_logging(self):<br>
+        logging.basicConfig(<br>
+            level=logging.INFO,<br>
+            format='%(asctime)s - %(levelname)s - %(message)s',<br>
+            handlers=[<br>
+                logging.FileHandler('etl_pipeline.log'),<br>
+                logging.StreamHandler()<br>
+            ]<br>
+        )<br>
+        self.logger = logging.getLogger(__name__)<br>
+    <br>
+    def setup_database_connections(self):<br>
+        """Setup connections to source and target databases"""<br>
+        self.source_engine = create_engine(self.config['source_database'])<br>
+        self.dwh_engine = create_engine(self.config['dwh_database'])<br>
+        self.staging_engine = create_engine(self.config['staging_database'])<br>
+    <br>
+    def run_full_pipeline(self, start_date, end_date):<br>
+        """Run complete ETL pipeline"""<br>
+        self.logger.info("Starting E-commerce DWH ETL Pipeline")<br>
+        <br>
+        try:<br>
+            # Step 1: Extract data from sources<br>
+            extracted_data = self.extract_data(start_date, end_date)<br>
+            <br>
+            # Step 2: Transform and clean data<br>
+            transformed_data = self.transform_data(extracted_data)<br>
+            <br>
+            # Step 3: Load to staging<br>
+            self.load_to_staging(transformed_data)<br>
+            <br>
+            # Step 4: Load to DWH<br>
+            self.load_to_dwh()<br>
+            <br>
+            # Step 5: Run data quality checks<br>
+            self.run_quality_checks()<br>
+            <br>
+            # Step 6: Update aggregates and indexes<br>
+            self.update_aggregates()<br>
+            <br>
+            self.logger.info("ETL Pipeline completed successfully")<br>
+            <br>
+        except Exception as e:<br>
+            self.logger.error(f"ETL Pipeline failed: {e}")<br>
+            raise<br>
+    <br>
+    def extract_data(self, start_date, end_date):<br>
+        """Extract data from various sources"""<br>
+        self.logger.info("Extracting data from sources")<br>
+        <br>
+        data_sources = {}<br>
+        <br>
+        # Extract from MySQL (orders, customers)<br>
+        orders_query = f"""<br>
+        SELECT * FROM orders <br>
+        WHERE order_date BETWEEN '{start_date}' AND '{end_date}'<br>
+        """<br>
+        data_sources['orders'] = pd.read_sql(orders_query, self.source_engine)<br>
+        <br>
+        # Extract from MongoDB (product catalog)<br>
+        # Using pymongo for MongoDB extraction<br>
+        products = self.extract_mongodb_data('products')<br>
+        data_sources['products'] = pd.DataFrame(products)<br>
+        <br>
+        # Extract from CSV files (supplementary data)<br>
+        data_sources['promotions'] = pd.read_csv('data/promotions.csv')<br>
+        <br>
+        self.logger.info(f"Extracted {len(data_sources)} data sources")<br>
+        return data_sources<br>
+    <br>
+    def transform_data(self, data_sources):<br>
+        """Transform and clean extracted data"""<br>
+        self.logger.info("Transforming data")<br>
+        <br>
+        transformed = {}<br>
+        <br>
+        # Transform customer data<br>
+        customers = data_sources['orders'][['customer_id', 'customer_name', 'email']].drop_duplicates()<br>
+        customers = self.clean_customer_data(customers)<br>
+        transformed['customers'] = customers<br>
+        <br>
+        # Transform product data<br>
+        products = data_sources['products']<br>
+        products = self.clean_product_data(products)<br>
+        transformed['products'] = products<br>
+        <br>
+        # Transform sales data<br>
+        sales = data_sources['orders'][['order_id', 'customer_id', 'product_id', 'order_date', 'amount']]<br>
+        sales = self.clean_sales_data(sales)<br>
+        transformed['sales'] = sales<br>
+        <br>
+        return transformed<br>
+    <br>
+    def load_to_staging(self, data):<br>
+        """Load transformed data to staging area"""<br>
+        self.logger.info("Loading data to staging")<br>
+        <br>
+        for table_name, df in data.items():<br>
+            df.to_sql(<br>
+                f'stg_{table_name}', <br>
+                self.staging_engine, <br>
+                if_exists='replace', <br>
+                index=False<br>
+            )<br>
+            self.logger.info(f"Loaded {len(df)} records to stg_{table_name}")<br>
+    <br>
+    def load_to_dwh(self):<br>
+        """Load data from staging to DWH using SQL transformations"""<br>
+        self.logger.info("Loading data to DWH")<br>
+        <br>
+        # Execute DWH loading scripts<br>
+        with open('sql/etl/load_dwh.sql', 'r') as file:<br>
+            dwh_queries = file.read()<br>
+        <br>
+        with self.dwh_engine.connect() as conn:<br>
+            conn.execute(dwh_queries)<br>
+    <br>
+    def run_quality_checks(self):<br>
+        """Run data quality checks"""<br>
+        self.logger.info("Running data quality checks")<br>
+        <br>
+        quality_checks = [<br>
+            "SELECT COUNT(*) FROM dim_customer WHERE customer_name IS NULL",<br>
+            "SELECT COUNT(*) FROM fact_sales WHERE sales_amount <= 0",<br>
+            "SELECT COUNT(*) FROM dim_product WHERE product_name IS NULL"<br>
+        ]<br>
+        <br>
+        with self.dwh_engine.connect() as conn:<br>
+            for check in quality_checks:<br>
+                result = conn.execute(check).scalar()<br>
+                if result > 0:<br>
+                    self.logger.warning(f"Quality check failed: {result} issues found")<br>
+    <br>
+    def update_aggregates(self):<br>
+        """Update aggregate tables and materialized views"""<br>
+        self.logger.info("Updating aggregates")<br>
+        <br>
+        aggregate_queries = [<br>
+            "REFRESH MATERIALIZED VIEW mv_daily_sales",<br>
+            "REFRESH MATERIALIZED VIEW mv_customer_lifetime_value",<br>
+            "REFRESH MATERIALIZED VIEW mv_product_performance"<br>
+        ]<br>
+        <br>
+        with self.dwh_engine.connect() as conn:<br>
+            for query in aggregate_queries:<br>
+                conn.execute(query)<br><br>
+
+# Run the pipeline<br>
+if __name__ == "__main__":<br>
+    dwh = EcommerceDWH('config/etl_config.yaml')<br>
+    <br>
+    # Run for last month's data<br>
+    end_date = datetime.now().date()<br>
+    start_date = end_date - timedelta(days=30)<br>
+    <br>
+    dwh.run_full_pipeline(start_date, end_date)
+                </div>
+            </div>
+        </div>
+
+        <!-- Section 10: Industry Best Practices -->
+        <div id="section10" class="section">
+            <h2>10. Industry Best Practices</h2>
+            
+            <div class="subsection">
+                <h3>10.1 DWH Design Best Practices</h3>
+                <div class="highlight">
+                    <strong>Design Principles:</strong><br>
+                    • <strong>Simplicity</strong>: Keep schemas simple and intuitive<br>
+                    • <strong>Consistency</strong>: Use consistent naming conventions<br>
+                    • <strong>Performance</strong>: Design for query performance<br>
+                    • <strong>Scalability</strong>: Plan for future growth<br>
+                    • <strong>Maintainability</strong>: Easy to understand and modify
+                </div>
+
+                <h4>Naming Conventions</h4>
+                <div class="code-block">
+-- Schema Naming<br>
+raw_data           -- Raw, unprocessed data<br>
+staging           -- Cleaned, transformed data<br>
+core_dwh          -- Main data warehouse<br>
+data_marts        -- Departmental data marts<br>
+utils             -- Utility functions and views<br><br>
+
+-- Table Naming<br>
+dim_{entity}      -- Dimension tables (dim_customer)<br>
+fact_{business_process} -- Fact tables (fact_sales)<br>
+bridge_{relationship}   -- Bridge tables (bridge_product_category)<br>
+mv_{summary}      -- Materialized views (mv_daily_sales)<br>
+stg_{source}      -- Staging tables (stg_orders)<br><br>
+
+-- Column Naming<br>
+{entity}_key      -- Surrogate keys (customer_key)<br>
+{entity}_id       -- Natural keys (customer_id)<br>
+{attribute}_date  -- Date fields (order_date, created_date)<br>
+{attribute}_flag  -- Boolean flags (is_active_flag)<br>
+{attribute}_code  -- Code fields (status_code, country_code)
+                </div>
+            </div>
+
+            <div class="subsection">
+                <h3>10.2 Performance Optimization</h3>
+                <table class="comparison-table">
+                    <thead>
+                        <tr>
+                            <th>Optimization Technique</th>
+                            <th>Implementation</th>
+                            <th>Benefit</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td><strong>Partitioning</strong></td>
+                            <td>Partition by date/key ranges</td>
+                            <td>Faster query performance, easier maintenance</td>
+                        </tr>
+                        <tr>
+                            <td><strong>Clustering</strong></td>
+                            <td>Cluster by frequently queried columns</td>
+                            <td>Improved data locality, reduced I/O</td>
+                        </tr>
+                        <tr>
+                            <td><strong>Indexing</strong></td>
+                            <td>Strategic index placement</td>
+                            <td>Faster data retrieval</td>
+                        </tr>
+                        <tr>
+                            <td><strong>Materialized Views</strong></td>
+                            <td>Pre-computed aggregations</td>
+                            <td>Instant complex query results</td>
+                        </tr>
+                        <tr>
+                            <td><strong>Data Compression</strong></td>
+                            <td>Columnar storage compression</td>
+                            <td>Reduced storage, faster scans</td>
+                        </tr>
+                    </tbody>
+                </table>
+
+                <h4>Performance Tuning SQL</h4>
+                <div class="code-block">
+-- Create partitioned table<br>
+CREATE TABLE fact_sales (<br>
+    sales_date DATE,<br>
+    customer_id INT,<br>
+    product_id INT,<br>
+    amount DECIMAL(10,2)<br>
+)<br>
+PARTITION BY RANGE (sales_date);<br><br>
+
+-- Create monthly partitions<br>
+CREATE TABLE fact_sales_2024_01 <br>
+PARTITION OF fact_sales <br>
+FOR VALUES FROM ('2024-01-01') TO ('2024-02-01');<br><br>
+
+-- Create clustered index<br>
+CREATE INDEX idx_sales_date_customer <br>
+ON fact_sales (sales_date, customer_id);<br><br>
+
+-- Create materialized view for daily aggregates<br>
+CREATE MATERIALIZED VIEW mv_daily_sales AS<br>
+SELECT <br>
+    sales_date,<br>
+    customer_id,<br>
+    SUM(amount) as daily_total,<br>
+    COUNT(*) as transaction_count<br>
+FROM fact_sales<br>
+GROUP BY sales_date, customer_id;<br><br>
+
+-- Create covering index for common queries<br>
+CREATE INDEX idx_sales_covering ON fact_sales<br>
+(

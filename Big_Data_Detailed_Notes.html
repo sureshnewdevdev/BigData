@@ -1,0 +1,276 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Big Data — Detailed Notes</title>
+  <style>
+    :root {
+      --bg: #0b1220;
+      --panel: #121a2b;
+      --muted: #9fb3c8;
+      --text: #e6eef8;
+      --accent: #a78bfa;
+      --accent-2: #5eead4;
+      --border: rgba(255,255,255,0.08);
+      --good: #86efac;
+      --warn: #fde68a;
+      --bad: #fca5a5;
+    }
+    * { box-sizing: border-box; }
+    body {
+      margin: 0;
+      font-family: ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, "Helvetica Neue", Arial;
+      color: var(--text);
+      background: linear-gradient(180deg, #0b1220 0%, #0a1020 100%);
+      line-height: 1.6;
+    }
+    .container {
+      display: grid;
+      grid-template-columns: 300px 1fr;
+      min-height: 100vh;
+    }
+    nav {
+      position: sticky; top: 0; height: 100vh; overflow-y: auto;
+      background: var(--panel);
+      border-right: 1px solid var(--border);
+      padding: 20px 16px;
+    }
+    nav h2 { font-size: 18px; margin: 0 0 12px; color: var(--accent-2);}
+    nav a {
+      display: block; color: var(--muted); text-decoration: none;
+      padding: 9px 12px; border-radius: 12px; margin-bottom: 8px;
+      border: 1px solid transparent;
+    }
+    nav a:hover { color: var(--text); background: rgba(147,197,253,0.07); border-color: var(--border);}
+    main { padding: 28px; }
+    header { display:flex; align-items:center; justify-content:space-between; gap:12px; flex-wrap: wrap; }
+    header h1 { margin: 0; font-size: 28px; color: var(--accent);}
+    header .meta { color: var(--muted); font-size: 14px;}
+    section { background: rgba(255,255,255,0.03); border: 1px solid var(--border); border-radius: 14px; padding: 20px; margin: 18px 0 28px; }
+    section h2 { margin-top: 0; color: var(--accent-2);}
+    h3 { color: #c7d2fe; }
+    .grid-2 { display:grid; grid-template-columns: 1fr 1fr; gap:16px; }
+    .card { background: var(--panel); border:1px solid var(--border); border-radius:12px; padding:16px;}
+    .pill { display:inline-block; border:1px solid var(--border); border-radius:999px; padding:2px 10px; margin:3px; font-size:12px; color:var(--muted);}
+    table { width:100%; border-collapse: collapse; }
+    th, td { padding:10px 12px; border-bottom:1px dashed var(--border); vertical-align: top; }
+    th { text-align:left; color:#cbd5e1; }
+    pre, code { font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, "Liberation Mono", monospace; }
+    .note { border-left:4px solid var(--accent-2); background: rgba(94,234,212,0.06); padding:10px 12px;}
+    .good { color: var(--good); }
+    .bad { color: var(--bad); }
+    .warn { color: var(--warn); }
+    footer { color: var(--muted); padding: 24px 10px; text-align: center;}
+    @media (max-width: 980px){ .container { grid-template-columns: 1fr; } nav { position: relative; height: auto; } }
+    @media print { nav { display:none; } body { background:#fff; color:#000; } section { page-break-inside: avoid; } }
+  </style>
+</head>
+<body>
+<div class="container">
+  <nav>
+    <h2>Index</h2>
+    <a href="#fundamentals">Big Data Fundamentals</a>
+    <a href="#components">Components of Big Data</a>
+    <a href="#architecture">Architecture</a>
+    <a href="#benefits">Benefits</a>
+    <a href="#challenges">Challenges</a>
+    <a href="#lifecycle">Data Lifecycle Stages</a>
+    <a href="#types">Types of Data: Structured / Semi‑structured / Unstructured</a>
+    <a href="#filetypes">File Types</a>
+    <a href="#cheats">Cheat‑sheet & Checklist</a>
+  </nav>
+  <main>
+    <header>
+      <h1>Big Data — Detailed Notes</h1>
+      <div class="meta">Prepared: 2025-11-08 11:43 • Audience: Beginners → Advanced (trainer friendly)</div>
+    </header>
+
+    <section id="fundamentals">
+      <h2>Big Data Fundamentals</h2>
+      <p><b>Big Data</b> refers to datasets whose size, speed, and variety exceed the capability of traditional databases to capture, store, manage, and analyze.</p>
+      <div class="grid-2">
+        <div class="card">
+          <h3>The 5Vs</h3>
+          <ul>
+            <li><b>Volume</b> – terabytes to petabytes of data.</li>
+            <li><b>Velocity</b> – continuous streams (events, logs).</li>
+            <li><b>Variety</b> – text, images, sensor data, nested JSON.</li>
+            <li><b>Veracity</b> – data quality & trustworthiness.</li>
+            <li><b>Value</b> – business outcomes (revenue, savings, risk).</li>
+          </ul>
+        </div>
+        <div class="card">
+          <h3>Typical Uses</h3>
+          <ul>
+            <li>Customer 360 and personalization.</li>
+            <li>Fraud detection and anomaly alerts.</li>
+            <li>IoT telemetry analytics & predictive maintenance.</li>
+            <li>Clickstream/marketing attribution and A/B testing.</li>
+          </ul>
+        </div>
+      </div>
+
+      <h3>Concept Map (SVG)</h3>
+      <svg width="100%" height="140" xmlns="http://www.w3.org/2000/svg">
+        <defs>
+          <linearGradient id="grad" x1="0" x2="1">
+            <stop offset="0%" stop-color="#5eead4"/>
+            <stop offset="100%" stop-color="#93c5fd"/>
+          </linearGradient>
+        </defs>
+        <rect x="20" y="20" width="180" height="60" rx="10" fill="none" stroke="url(#grad)"/>
+        <text x="35" y="55" fill="#e6eef8">Sources</text>
+        <rect x="240" y="20" width="160" height="60" rx="10" fill="none" stroke="url(#grad)"/>
+        <text x="260" y="55" fill="#e6eef8">Ingestion</text>
+        <rect x="430" y="20" width="160" height="60" rx="10" fill="none" stroke="url(#grad)"/>
+        <text x="450" y="55" fill="#e6eef8">Storage</text>
+        <rect x="620" y="20" width="180" height="60" rx="10" fill="none" stroke="url(#grad)"/>
+        <text x="640" y="55" fill="#e6eef8">Processing & ML</text>
+        <line x1="200" y1="50" x2="240" y2="50" stroke="url(#grad)" stroke-width="2"/>
+        <line x1="400" y1="50" x2="430" y2="50" stroke="url(#grad)" stroke-width="2"/>
+        <line x1="590" y1="50" x2="620" y2="50" stroke="url(#grad)" stroke-width="2"/>
+      </svg>
+    </section>
+
+    <section id="components">
+      <h2>Components of Big Data</h2>
+      <div class="grid-2">
+        <div class="card">
+          <h3>Ingestion</h3>
+          <p>Collect data from batch and streaming sources.</p>
+          <p>
+            <span class="pill">Kafka</span>
+            <span class="pill">Flume</span>
+            <span class="pill">Logstash</span>
+            <span class="pill">Fivetran/Stitch</span>
+            <span class="pill">CDC (Debezium/Datastream)</span>
+          </p>
+        </div>
+        <div class="card">
+          <h3>Storage</h3>
+          <p>Durable, cost‑effective layers for raw and curated data.</p>
+          <p>
+            <span class="pill">HDFS</span>
+            <span class="pill">Cloud Storage / S3 / ADLS</span>
+            <span class="pill">NoSQL (HBase, Bigtable, Cassandra)</span>
+            <span class="pill">Data Warehouse (BigQuery, Snowflake)</span>
+            <span class="pill">Lakehouse (Delta/Iceberg/Hudi)</span>
+          </p>
+        </div>
+        <div class="card">
+          <h3>Processing</h3>
+          <p>
+            <span class="pill">Batch: Spark, Hive, Presto/Trino</span>
+            <span class="pill">Stream: Spark Structured Streaming, Flink, Beam</span>
+          </p>
+        </div>
+        <div class="card">
+          <h3>Orchestration & Quality</h3>
+          <p>
+            <span class="pill">Airflow/Composer</span>
+            <span class="pill">dbt/Dataform</span>
+            <span class="pill">Great Expectations</span>
+            <span class="pill">MLFlow</span>
+          </p>
+        </div>
+        <div class="card">
+          <h3>Serving</h3>
+          <p>
+            <span class="pill">BI: Power BI, Looker, Tableau</span>
+            <span class="pill">APIs/Apps</span>
+            <span class="pill">Feature Stores</span>
+          </p>
+        </div>
+      </div>
+    </section>
+
+    <section id="architecture">
+      <h2>Architecture</h2>
+      <h3>Common Patterns</h3>
+      <ul>
+        <li><b>Data Lake + Warehouse</b> (lake for raw, warehouse for curated marts).</li>
+        <li><b>Lakehouse</b> (one platform supports ACID tables, BI & ML).</li>
+        <li><b>Lambda</b> (batch + stream paths) and <b>Kappa</b> (stream‑first) architectures.</li>
+      </ul>
+      <h3>Reference Layers</h3>
+      <table>
+        <tr><th>Layer</th><th>Purpose</th><th>Typical Tech</th></tr>
+        <tr><td>RAW / Bronze</td><td>Immutable landing of source data</td><td>GCS/S3/ADLS, Delta/Iceberg</td></tr>
+        <tr><td>Silver</td><td>Cleaned, typed, conformed</td><td>Spark/DBT → Warehouse</td></tr>
+        <tr><td>Gold</td><td>Business marts & KPIs</td><td>BigQuery/Snowflake/Redshift</td></tr>
+      </table>
+    </section>
+
+    <section id="benefits">
+      <h2>Benefits</h2>
+      <ul>
+        <li class="good">360° insights → better decisions and personalization.</li>
+        <li class="good">Scalable storage & compute → handle peaks elastically.</li>
+        <li class="good">Advanced analytics & ML → predictions, recommendations.</li>
+        <li class="good">Cost efficiency with separation of storage/compute.</li>
+      </ul>
+    </section>
+
+    <section id="challenges">
+      <h2>Challenges</h2>
+      <ul>
+        <li class="bad">Data quality, lineage, and metadata management.</li>
+        <li class="bad">Security & privacy (PII, access control, masking).</li>
+        <li class="warn">Cost governance (skewed joins, unpartitioned scans).</li>
+        <li class="warn">Skill gaps: distributed systems & SQL/ML expertise.</li>
+        <li class="warn">Ops: monitoring pipelines, retries, idempotency.</li>
+      </ul>
+      <div class="note"><b>Mitigation:</b> adopt naming/data contracts, unit tests for SQL, CI/CD for pipelines, and FinOps dashboards.</div>
+    </section>
+
+    <section id="lifecycle">
+      <h2>Data Lifecycle Stages</h2>
+      <ol>
+        <li><b>Generate</b> – events, transactions, sensors, files.</li>
+        <li><b>Ingest</b> – batch loads, streams, CDC connectors.</li>
+        <li><b>Store</b> – lake/lakehouse with versioned ACID tables.</li>
+        <li><b>Process</b> – batch & stream transforms; quality checks.</li>
+        <li><b>Serve</b> – marts, APIs, features for ML, dashboards.</li>
+        <li><b>Archive/Dispose</b> – retention policies, legal hold, deletion.</li>
+      </ol>
+    </section>
+
+    <section id="types">
+      <h2>Types of Data: Structured / Semi‑structured / Unstructured</h2>
+      <table>
+        <tr><th>Type</th><th>Description</th><th>Examples</th><th>Storage/Tools</th></tr>
+        <tr><td>Structured</td><td>Fixed schema, relational tables</td><td>Orders, customers, inventory</td><td>RDBMS, Data Warehouse, SQL</td></tr>
+        <tr><td>Semi‑structured</td><td>Self‑describing (keys/tags) but flexible</td><td>JSON, Avro, Parquet, XML, logs</td><td>Lakehouse tables, schema‑on‑read, SQL with JSON funcs</td></tr>
+        <tr><td>Unstructured</td><td>No fixed schema</td><td>Images, video, audio, PDFs</td><td>Object storage + AI/vision/NLP for extraction</td></tr>
+      </table>
+    </section>
+
+    <section id="filetypes">
+      <h2>File Types</h2>
+      <table>
+        <tr><th>Format</th><th>Category</th><th>Pros</th><th>Cons</th><th>Notes</th></tr>
+        <tr><td>CSV/TSV</td><td>Row‑oriented</td><td>Simple, universal</td><td>No schema, big scans</td><td>Use for small batch or interchange</td></tr>
+        <tr><td>JSON</td><td>Semi‑structured</td><td>Flexible, nested</td><td>Verbose, slow to parse</td><td>Prefer JSONL for streaming</td></tr>
+        <tr><td>Avro</td><td>Row‑oriented</td><td>Schema evolution, splittable</td><td>Not columnar</td><td>Great for CDC and streams</td></tr>
+        <tr><td>Parquet</td><td>Columnar</td><td>Compression, predicate pushdown</td><td>Small files hurt performance</td><td>Best default for analytics</td></tr>
+        <tr><td>ORC</td><td>Columnar</td><td>Efficient for Hadoop</td><td>Less common on some clouds</td><td>Similar to Parquet</td></tr>
+        <tr><td>Delta/Iceberg/Hudi</td><td>Table format</td><td>ACID, time‑travel, upserts</td><td>Requires compatible engines</td><td>Lakehouse foundation</td></tr>
+      </table>
+    </section>
+
+    <section id="cheats">
+      <h2>Cheat‑sheet & Checklist</h2>
+      <ul>
+        <li>Default to <b>Parquet</b> with partitioning; compact small files.</li>
+        <li>Choose <b>ELT</b> when warehouse is primary and SQL‑friendly; choose <b>ETL</b> for heavy pre‑warehouse cleansing.</li>
+        <li>Track <b>lineage</b> & <b>data contracts</b>; automate quality tests.</li>
+        <li>Secure by design: row/column‑level controls, tokenization, audit logs.</li>
+      </ul>
+    </section>
+
+    <footer>© 2025 Big Data Notes • Print‑ready and trainer‑friendly.</footer>
+  </main>
+</div>
+</body>
+</html>

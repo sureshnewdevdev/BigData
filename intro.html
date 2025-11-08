@@ -1,0 +1,811 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Data Warehousing Mastery Guide</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            line-height: 1.6;
+            color: #333;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            min-height: 100vh;
+        }
+        
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+        
+        .header {
+            background: white;
+            border-radius: 15px;
+            padding: 30px;
+            margin-bottom: 30px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+            text-align: center;
+        }
+        
+        .header h1 {
+            color: #2c3e50;
+            font-size: 2.5em;
+            margin-bottom: 10px;
+        }
+        
+        .header .subtitle {
+            color: #7f8c8d;
+            font-size: 1.2em;
+        }
+        
+        .toc {
+            background: white;
+            border-radius: 15px;
+            padding: 30px;
+            margin-bottom: 30px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+        }
+        
+        .toc h2 {
+            color: #2c3e50;
+            margin-bottom: 20px;
+            border-bottom: 3px solid #3498db;
+            padding-bottom: 10px;
+        }
+        
+        .toc ol {
+            list-style-type: none;
+            counter-reset: toc-counter;
+        }
+        
+        .toc li {
+            counter-increment: toc-counter;
+            margin-bottom: 15px;
+            padding: 15px;
+            background: #f8f9fa;
+            border-radius: 8px;
+            border-left: 4px solid #3498db;
+        }
+        
+        .toc li:before {
+            content: counter(toc-counter);
+            background: #3498db;
+            color: white;
+            font-weight: bold;
+            padding: 5px 10px;
+            border-radius: 50%;
+            margin-right: 15px;
+        }
+        
+        .section {
+            background: white;
+            border-radius: 15px;
+            padding: 30px;
+            margin-bottom: 30px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+        }
+        
+        .section h2 {
+            color: #2c3e50;
+            margin-bottom: 20px;
+            border-bottom: 3px solid #e74c3c;
+            padding-bottom: 10px;
+        }
+        
+        .section h3 {
+            color: #34495e;
+            margin: 25px 0 15px 0;
+        }
+        
+        .subsection {
+            margin: 20px 0;
+            padding: 20px;
+            background: #f8f9fa;
+            border-radius: 10px;
+            border-left: 4px solid #9b59b6;
+        }
+        
+        .code-block {
+            background: #2c3e50;
+            color: #ecf0f1;
+            padding: 20px;
+            border-radius: 8px;
+            margin: 15px 0;
+            overflow-x: auto;
+            font-family: 'Courier New', monospace;
+        }
+        
+        .comparison-table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 20px 0;
+            background: white;
+            border-radius: 8px;
+            overflow: hidden;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+        }
+        
+        .comparison-table th {
+            background: #34495e;
+            color: white;
+            padding: 15px;
+            text-align: left;
+        }
+        
+        .comparison-table td {
+            padding: 12px 15px;
+            border-bottom: 1px solid #ecf0f1;
+        }
+        
+        .comparison-table tr:nth-child(even) {
+            background: #f8f9fa;
+        }
+        
+        .architecture-diagram {
+            background: #ecf0f1;
+            padding: 20px;
+            border-radius: 8px;
+            margin: 20px 0;
+            font-family: 'Courier New', monospace;
+            line-height: 1.8;
+        }
+        
+        .highlight {
+            background: #fff3cd;
+            padding: 15px;
+            border-left: 4px solid #ffc107;
+            margin: 15px 0;
+            border-radius: 0 8px 8px 0;
+        }
+        
+        .download-btn {
+            display: inline-block;
+            background: #27ae60;
+            color: white;
+            padding: 12px 25px;
+            text-decoration: none;
+            border-radius: 8px;
+            font-weight: bold;
+            margin: 10px 5px;
+            transition: background 0.3s;
+        }
+        
+        .download-btn:hover {
+            background: #219a52;
+        }
+        
+        @media (max-width: 768px) {
+            .container {
+                padding: 10px;
+            }
+            
+            .header h1 {
+                font-size: 2em;
+            }
+            
+            .section {
+                padding: 20px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <h1>🧠 Python SQL Competency – Data Warehousing Comprehensive Mastery Guide</h1>
+            <div class="subtitle">Complete Guide from Fundamentals to Advanced Implementation</div>
+        </div>
+
+        <div class="toc">
+            <h2>📚 Table of Contents</h2>
+            <ol>
+                <li><a href="#section1">Data Warehousing Deep Dive</a></li>
+                <li><a href="#section2">Data Store Vendors Mastery</a></li>
+                <li><a href="#section3">OLTP vs OLAP Systems</a></li>
+                <li><a href="#section4">DWH vs Data Lake Comprehensive Guide</a></li>
+            </ol>
+        </div>
+
+        <!-- Section 1: Data Warehousing Deep Dive -->
+        <div id="section1" class="section">
+            <h2>1. Data Warehousing Deep Dive</h2>
+            
+            <div class="subsection">
+                <h3>1.1 Core Concepts</h3>
+                <p><strong>What is a Data Warehouse?</strong><br>
+                A <strong>Data Warehouse (DWH)</strong> is a centralized, integrated, time-variant, and non-volatile collection of data that supports management's decision-making process.</p>
+                
+                <div class="highlight">
+                    <strong>Key Characteristics (Kimball's 4 Properties):</strong><br>
+                    • <strong>Integrated</strong>: Data from disparate sources is consolidated<br>
+                    • <strong>Subject-Oriented</strong>: Organized around key business subjects<br>
+                    • <strong>Time-Variant</strong>: Historical data tracking<br>
+                    • <strong>Non-Volatile</strong>: Data doesn't change once inserted
+                </div>
+            </div>
+
+            <div class="subsection">
+                <h3>1.2 DWH Components Architecture</h3>
+                <div class="architecture-diagram">
+┌─────────────────┐    ┌──────────────────┐    ┌─────────────────┐<br>
+│   DATA SOURCES  │    │   STAGING AREA   │    │   DATA WAREHOUSE│<br>
+│                 │    │                  │    │                 │<br>
+│ • OLTP Systems  │───▶│ • Raw Data       │───▶│ • Fact Tables   │<br>
+│ • CRM/ERP       │    │ • Data Cleaning  │    │ • Dimension     │<br>
+│ • APIs          │    │ • Transformations│    │   Tables        │<br>
+│ • Files         │    │                  │    │ • Aggregations  │<br>
+└─────────────────┘    └──────────────────┘    └─────────────────┘<br>
+                              │                        │<br>
+                              ▼                        ▼<br>
+                     ┌─────────────────┐    ┌─────────────────┐<br>
+                     │   DATA MARTS    │    │   BI & ANALYTICS│<br>
+                     │                 │    │                 │<br>
+                     │ • Departmental  │    │ • Dashboards    │<br>
+                     │ • Specialized   │    │ • Reports       │<br>
+                     │   Views         │    │ • ML Models     │<br>
+                     └─────────────────┘    └─────────────────┘
+                </div>
+            </div>
+
+            <div class="subsection">
+                <h3>1.3 Implementation Examples</h3>
+                
+                <h4>SQL: Creating DWH Schema Structure</h4>
+                <div class="code-block">
+-- Create Database<br>
+CREATE DATABASE sales_warehouse;<br>
+USE sales_warehouse;<br><br>
+
+-- Create Schemas for different layers<br>
+CREATE SCHEMA raw_data;      -- Staging area<br>
+CREATE SCHEMA core_dwh;      -- Main warehouse<br>
+CREATE SCHEMA data_marts;    -- Departmental views<br><br>
+
+-- Create Dimension Tables<br>
+CREATE TABLE core_dwh.dim_customer (<br>
+    customer_key INT IDENTITY(1,1) PRIMARY KEY,<br>
+    customer_id INT NOT NULL,<br>
+    customer_name VARCHAR(100),<br>
+    email VARCHAR(150),<br>
+    phone VARCHAR(20),<br>
+    address_line1 VARCHAR(255),<br>
+    city VARCHAR(50),<br>
+    state VARCHAR(50),<br>
+    country VARCHAR(50),<br>
+    start_date DATE NOT NULL,<br>
+    end_date DATE,<br>
+    is_current BOOLEAN DEFAULT TRUE,<br>
+    created_timestamp TIMESTAMP DEFAULT CURRENT_TIMESTAMP<br>
+);<br><br>
+
+-- Create Fact Table<br>
+CREATE TABLE core_dwh.fact_sales (<br>
+    sales_key BIGINT IDENTITY(1,1) PRIMARY KEY,<br>
+    customer_key INT,<br>
+    product_key INT,<br>
+    date_key INT,<br>
+    store_key INT,<br>
+    sales_amount DECIMAL(15,2),<br>
+    quantity_sold INT,<br>
+    unit_price DECIMAL(10,2),<br>
+    discount_amount DECIMAL(10,2),<br>
+    tax_amount DECIMAL(10,2),<br>
+    FOREIGN KEY (customer_key) REFERENCES core_dwh.dim_customer(customer_key)<br>
+);
+                </div>
+
+                <h4>Python: DWH Metadata Management</h4>
+                <div class="code-block">
+import pandas as pd<br>
+import sqlalchemy<br>
+from datetime import datetime, timedelta<br>
+import json<br><br>
+
+class DataWarehouseManager:<br>
+    def __init__(self, connection_string):<br>
+        self.engine = sqlalchemy.create_engine(connection_string)<br>
+        self.metadata = {}<br>
+    <br>
+    def create_dimension_table(self, table_name, columns, surrogate_key=True):<br>
+        """Create dimension table with SCD support"""<br>
+        ddl = f"CREATE TABLE {table_name} ("<br>
+        <br>
+        if surrogate_key:<br>
+            ddl += f"{table_name}_key INT IDENTITY(1,1) PRIMARY KEY,"<br>
+        <br>
+        for col_name, col_type in columns.items():<br>
+            ddl += f"{col_name} {col_type},"<br>
+        <br>
+        ddl += "start_date DATE NOT NULL,"<br>
+        ddl += "end_date DATE,"<br>
+        ddl += "is_current BOOLEAN DEFAULT TRUE,"<br>
+        ddl += "created_timestamp TIMESTAMP DEFAULT CURRENT_TIMESTAMP"<br>
+        ddl += ");"<br>
+        <br>
+        return ddl
+                </div>
+            </div>
+        </div>
+
+        <!-- Section 2: Data Store Vendors Mastery -->
+        <div id="section2" class="section">
+            <h2>2. Data Store Vendors Mastery</h2>
+            
+            <div class="subsection">
+                <h3>2.1 Vendor Comparison Matrix</h3>
+                <table class="comparison-table">
+                    <thead>
+                        <tr>
+                            <th>Vendor</th>
+                            <th>Type</th>
+                            <th>Pricing Model</th>
+                            <th>Key Features</th>
+                            <th>Best For</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td><strong>Snowflake</strong></td>
+                            <td>Cloud</td>
+                            <td>Compute + Storage</td>
+                            <td>Zero-copy cloning, Time Travel</td>
+                            <td>Multi-cloud, Scalability</td>
+                        </tr>
+                        <tr>
+                            <td><strong>BigQuery</strong></td>
+                            <td>Cloud</td>
+                            <td>Pay-per-query</td>
+                            <td>Serverless, ML Integration</td>
+                            <td>Google Ecosystem, Ad-hoc</td>
+                        </tr>
+                        <tr>
+                            <td><strong>Redshift</strong></td>
+                            <td>Cloud</td>
+                            <td>Node-based</td>
+                            <td>Columnar Storage, Spectrum</td>
+                            <td>AWS Ecosystem, ETL Pipelines</td>
+                        </tr>
+                        <tr>
+                            <td><strong>Azure Synapse</strong></td>
+                            <td>Cloud</td>
+                            <td>DWU + Storage</td>
+                            <td>Unified Analytics, Spark</td>
+                            <td>Microsoft Ecosystem, Big Data</td>
+                        </tr>
+                        <tr>
+                            <td><strong>PostgreSQL</strong></td>
+                            <td>Open Source</td>
+                            <td>Free + Support</td>
+                            <td>Extensible, JSON Support</td>
+                            <td>Budget-conscious, Custom Solutions</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+
+            <div class="subsection">
+                <h3>2.2 Implementation Examples</h3>
+                
+                <h4>Snowflake Implementation</h4>
+                <div class="code-block">
+-- Create Warehouse<br>
+CREATE WAREHOUSE analytics_wh<br>
+  WITH WAREHOUSE_SIZE = 'X-SMALL'<br>
+  AUTO_SUSPEND = 300<br>
+  AUTO_RESUME = TRUE;<br><br>
+
+-- Create Database<br>
+CREATE DATABASE sales_dwh;<br>
+USE DATABASE sales_dwh;<br><br>
+
+-- Create Schema with Data Retention<br>
+CREATE SCHEMA raw_data <br>
+  DATA_RETENTION_TIME_IN_DAYS = 1;  -- Time Travel for 1 day<br><br>
+
+CREATE SCHEMA curated_data <br>
+  DATA_RETENTION_TIME_IN_DAYS = 90; -- Time Travel for 90 days<br><br>
+
+-- Create Table with Clustering<br>
+CREATE TABLE curated_data.fact_sales (<br>
+    sales_date DATE,<br>
+    customer_id INT,<br>
+    product_id INT,<br>
+    amount DECIMAL(10,2),<br>
+    region VARCHAR(50)<br>
+)<br>
+CLUSTER BY (sales_date, region);<br><br>
+
+-- Zero-copy clone for testing<br>
+CREATE TABLE test_sales CLONE curated_data.fact_sales;
+                </div>
+
+                <h4>BigQuery Implementation</h4>
+                <div class="code-block">
+-- Create Dataset<br>
+CREATE SCHEMA sales_dwh<br>
+OPTIONS(<br>
+  location='us-central1',<br>
+  description='Sales Data Warehouse'<br>
+);<br><br>
+
+-- Create Partitioned and Clustered Table<br>
+CREATE TABLE sales_dwh.fact_sales (<br>
+    sales_date DATE,<br>
+    customer_id INT64,<br>
+    product_id INT64,<br>
+    amount NUMERIC(10,2),<br>
+    region STRING<br>
+)<br>
+PARTITION BY sales_date<br>
+CLUSTER BY region, product_id;<br><br>
+
+-- Query with Partition Pruning<br>
+SELECT <br>
+    region,<br>
+    SUM(amount) as total_sales<br>
+FROM sales_dwh.fact_sales<br>
+WHERE sales_date BETWEEN '2024-01-01' AND '2024-01-31'<br>
+GROUP BY region;
+                </div>
+            </div>
+        </div>
+
+        <!-- Section 3: OLTP vs OLAP Systems -->
+        <div id="section3" class="section">
+            <h2>3. OLTP vs OLAP Systems</h2>
+            
+            <div class="subsection">
+                <h3>3.1 Comprehensive Comparison</h3>
+                <table class="comparison-table">
+                    <thead>
+                        <tr>
+                            <th>Aspect</th>
+                            <th>OLTP Systems</th>
+                            <th>OLAP Systems</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td><strong>Purpose</strong></td>
+                            <td>Daily operations</td>
+                            <td>Business intelligence</td>
+                        </tr>
+                        <tr>
+                            <td><strong>Data Type</strong></td>
+                            <td>Current, operational</td>
+                            <td>Historical, summarized</td>
+                        </tr>
+                        <tr>
+                            <td><strong>Schema</strong></td>
+                            <td>Normalized (3NF)</td>
+                            <td>Denormalized (Star/Snowflake)</td>
+                        </tr>
+                        <tr>
+                            <td><strong>Query Type</strong></td>
+                            <td>Simple transactions</td>
+                            <td>Complex analytical queries</td>
+                        </tr>
+                        <tr>
+                            <td><strong>Data Volume</strong></td>
+                            <td>MBs - GBs</td>
+                            <td>GBs - TBs - PBs</td>
+                        </tr>
+                        <tr>
+                            <td><strong>Users</strong></td>
+                            <td>Clerks, operators</td>
+                            <td>Analysts, executives</td>
+                        </tr>
+                        <tr>
+                            <td><strong>Performance</strong></td>
+                            <td>Transaction speed</td>
+                            <td>Query speed</td>
+                        </tr>
+                        <tr>
+                            <td><strong>Data Model</strong></td>
+                            <td>Entity-Relationship</td>
+                            <td>Dimensional Model</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+
+            <div class="subsection">
+                <h3>3.2 Implementation Examples</h3>
+                
+                <h4>OLTP Database Design (Normalized)</h4>
+                <div class="code-block">
+-- Normalized OLTP Schema for E-commerce<br>
+CREATE DATABASE ecommerce_oltp;<br>
+USE ecommerce_oltp;<br><br>
+
+-- Customers table<br>
+CREATE TABLE customers (<br>
+    customer_id INT PRIMARY KEY AUTO_INCREMENT,<br>
+    first_name VARCHAR(50) NOT NULL,<br>
+    last_name VARCHAR(50) NOT NULL,<br>
+    email VARCHAR(100) UNIQUE NOT NULL,<br>
+    phone VARCHAR(20),<br>
+    created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,<br>
+    updated_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,<br>
+    INDEX idx_email (email),<br>
+    INDEX idx_created_at (created_at)<br>
+);<br><br>
+
+-- Orders table (Transactional)<br>
+CREATE TABLE orders (<br>
+    order_id INT PRIMARY KEY AUTO_INCREMENT,<br>
+    customer_id INT NOT NULL,<br>
+    order_date TIMESTAMP DEFAULT CURRENT_TIMESTAMP,<br>
+    total_amount DECIMAL(10,2) NOT NULL,<br>
+    status ENUM('pending', 'confirmed', 'shipped', 'delivered', 'cancelled'),<br>
+    shipping_address TEXT,<br>
+    payment_method VARCHAR(50),<br>
+    FOREIGN KEY (customer_id) REFERENCES customers(customer_id),<br>
+    INDEX idx_customer_date (customer_id, order_date),<br>
+    INDEX idx_status (status)<br>
+);
+                </div>
+
+                <h4>OLAP Database Design (Dimensional Model)</h4>
+                <div class="code-block">
+-- Dimensional Model for OLAP<br>
+CREATE DATABASE ecommerce_olap;<br>
+USE ecommerce_olap;<br><br>
+
+-- Customer Dimension (SCD Type 2)<br>
+CREATE TABLE dim_customer (<br>
+    customer_key INT PRIMARY KEY AUTO_INCREMENT,<br>
+    customer_id INT NOT NULL, -- Natural key from OLTP<br>
+    customer_name VARCHAR(100),<br>
+    email VARCHAR(100),<br>
+    city VARCHAR(50),<br>
+    state VARCHAR(50),<br>
+    country VARCHAR(50),<br>
+    customer_segment VARCHAR(50),<br>
+    start_date DATE NOT NULL,<br>
+    end_date DATE,<br>
+    is_current BOOLEAN DEFAULT TRUE,<br>
+    version_number INT DEFAULT 1,<br>
+    INDEX idx_customer_id (customer_id),<br>
+    INDEX idx_current (is_current)<br>
+);<br><br>
+
+-- Sales Fact Table<br>
+CREATE TABLE fact_sales (<br>
+    sales_key BIGINT PRIMARY KEY AUTO_INCREMENT,<br>
+    date_key INT,<br>
+    customer_key INT,<br>
+    product_key INT,<br>
+    order_id INT,<br>
+    sales_amount DECIMAL(15,2),<br>
+    quantity INT,<br>
+    unit_cost DECIMAL(10,2),<br>
+    discount_amount DECIMAL(10,2),<br>
+    tax_amount DECIMAL(10,2),<br>
+    shipping_amount DECIMAL(10,2),<br>
+    net_amount DECIMAL(15,2) GENERATED ALWAYS AS <br>
+        (sales_amount - discount_amount + tax_amount + shipping_amount) STORED,<br>
+    FOREIGN KEY (date_key) REFERENCES dim_date(date_key),<br>
+    FOREIGN KEY (customer_key) REFERENCES dim_customer(customer_key),<br>
+    FOREIGN KEY (product_key) REFERENCES dim_product(product_key),<br>
+    INDEX idx_date_customer (date_key, customer_key),<br>
+    INDEX idx_product (product_key)<br>
+);
+                </div>
+            </div>
+        </div>
+
+        <!-- Section 4: DWH vs Data Lake Comprehensive Guide -->
+        <div id="section4" class="section">
+            <h2>4. DWH vs Data Lake Comprehensive Guide</h2>
+            
+            <div class="subsection">
+                <h3>4.1 Detailed Comparison</h3>
+                <table class="comparison-table">
+                    <thead>
+                        <tr>
+                            <th>Characteristic</th>
+                            <th>Data Warehouse</th>
+                            <th>Data Lake</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td><strong>Data Structure</strong></td>
+                            <td>Structured, processed</td>
+                            <td>Raw, all formats</td>
+                        </tr>
+                        <tr>
+                            <td><strong>Schema</strong></td>
+                            <td>Schema-on-write</td>
+                            <td>Schema-on-read</td>
+                        </tr>
+                        <tr>
+                            <td><strong>Purpose</strong></td>
+                            <td>BI, reporting</td>
+                            <td>Data science, ML</td>
+                        </tr>
+                        <tr>
+                            <td><strong>Users</strong></td>
+                            <td>Business analysts</td>
+                            <td>Data scientists, engineers</td>
+                        </tr>
+                        <tr>
+                            <td><strong>Data Quality</strong></td>
+                            <td>Highly curated</td>
+                            <td>Raw, variable quality</td>
+                        </tr>
+                        <tr>
+                            <td><strong>Cost</strong></td>
+                            <td>Higher for structured data</td>
+                            <td>Lower for raw storage</td>
+                        </tr>
+                        <tr>
+                            <td><strong>Performance</strong></td>
+                            <td>Optimized for SQL queries</td>
+                            <td>Flexible processing</td>
+                        </tr>
+                        <tr>
+                            <td><strong>Tools</strong></td>
+                            <td>SQL, BI tools</td>
+                            <td>Spark, Python, ML frameworks</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+
+            <div class="subsection">
+                <h3>4.2 Architecture Patterns</h3>
+                
+                <h4>Modern Data Architecture (Lakehouse)</h4>
+                <div class="architecture-diagram">
+┌─────────────────────────────────────────────────────────────┐<br>
+│                    DATA SOURCES                             │<br>
+│  Databases │   APIs   │  Files   │  IoT   │  Social Media  │<br>
+└──────┬──────────┬──────────┬──────────┬──────────┬──────────┘<br>
+       │          │          │          │          │<br>
+┌──────▼──────────▼──────────▼──────────▼──────────▼──────────┐<br>
+│                    DATA LAKE (Raw)                         │<br>
+│  • All raw data                                            │<br>
+│  • Schema-on-read                                          │<br>
+│  • Cost-effective storage                                  │<br>
+└───────────────────────────┬────────────────────────────────┘<br>
+                            │<br>
+┌───────────────────────────▼────────────────────────────────┐<br>
+│                    PROCESSING LAYER                        │<br>
+│  • ETL/ELT Pipelines                                       │<br>
+│  • Data Quality Checks                                     │<br>
+│  • Feature Engineering                                     │<br>
+└───────────────────────────┬────────────────────────────────┘<br>
+                            │<br>
+                    ┌───────┴────────┐<br>
+                    │                │<br>
+            ┌───────▼─────┐  ┌───────▼────────┐<br>
+            │ DATA WAREHOUSE│  │  ML FEATURE   │<br>
+            │              │  │    STORE      │<br>
+            │ • Structured │  │ • Processed   │<br>
+            │ • SQL Optimized│ │ • ML-ready   │<br>
+            └──────────────┘  └───────────────┘<br>
+                    │                │<br>
+            ┌───────▼────────────────▼───────┐<br>
+            │        CONSUMPTION LAYER       │<br>
+            │  BI Tools │  Apps  │  ML Models│<br>
+            └────────────────────────────────┘
+                </div>
+            </div>
+
+            <div class="subsection">
+                <h3>4.3 Implementation Examples</h3>
+                
+                <h4>Data Lake Structure (AWS S3 Example)</h4>
+                <div class="code-block">
+import boto3<br>
+import pandas as pd<br>
+import json<br>
+from datetime import datetime<br>
+import pyarrow.parquet as pq<br><br>
+
+class DataLakeManager:<br>
+    def __init__(self, bucket_name):<br>
+        self.s3 = boto3.client('s3')<br>
+        self.bucket_name = bucket_name<br>
+        self.base_path = "data-lake"<br>
+    <br>
+    def organize_raw_zone(self, source_system, data_type, date, data, file_format='parquet'):<br>
+        """Organize data in raw zone with proper structure"""<br>
+        date_str = date.strftime('%Y/%m/%d')<br>
+        file_path = f"{self.base_path}/raw/{source_system}/{data_type}/{date_str}/data.{file_format}"<br>
+        <br>
+        if file_format == 'parquet':<br>
+            # Convert to parquet<br>
+            if isinstance(data, pd.DataFrame):<br>
+                data.to_parquet(f'/tmp/temp.parquet')<br>
+                with open('/tmp/temp.parquet', 'rb') as f:<br>
+                    self.s3.upload_fileobj(f, self.bucket_name, file_path)<br>
+        <br>
+        return f"s3://{self.bucket_name}/{file_path}"<br><br>
+
+# Usage example<br>
+data_lake = DataLakeManager('my-data-lake-bucket')<br><br>
+
+# Sample data<br>
+sales_data = {<br>
+    'order_id': [1, 2, 3],<br>
+    'customer_id': [101, 102, 103],<br>
+    'amount': [100.50, 200.75, 150.25],<br>
+    'order_date': ['2024-01-01', '2024-01-02', '2024-01-03']<br>
+}<br><br>
+
+# Store in raw zone<br>
+raw_path = data_lake.organize_raw_zone(<br>
+    source_system='ecommerce',<br>
+    data_type='sales',<br>
+    date=datetime(2024, 1, 1),<br>
+    data=sales_data,<br>
+    file_format='parquet'<br>
+)<br><br>
+
+print(f"Data stored in: {raw_path}")
+                </div>
+            </div>
+        </div>
+
+        <div class="section" style="text-align: center;">
+            <h2>Download Complete Guide</h2>
+            <p>Save this comprehensive guide for offline reference:</p>
+            <a href="#" class="download-btn" onclick="downloadAsHTML()">Download as HTML</a>
+            <a href="#" class="download-btn" onclick="downloadAsMD()">Download as Markdown</a>
+        </div>
+    </div>
+
+    <script>
+        function downloadAsHTML() {
+            const content = document.documentElement.outerHTML;
+            const blob = new Blob([content], { type: 'text/html' });
+            const url = URL.createObjectURL(blob);
+            const a = document.createElement('a');
+            a.href = url;
+            a.download = 'data-warehousing-mastery-guide.html';
+            document.body.appendChild(a);
+            a.click();
+            document.body.removeChild(a);
+            URL.revokeObjectURL(url);
+        }
+
+        function downloadAsMD() {
+            // Simplified markdown content
+            const mdContent = `# Data Warehousing Mastery Guide\n\n## Complete implementation code and examples...`;
+            const blob = new Blob([mdContent], { type: 'text/markdown' });
+            const url = URL.createObjectURL(blob);
+            const a = document.createElement('a');
+            a.href = url;
+            a.download = 'data-warehousing-mastery-guide.md';
+            document.body.appendChild(a);
+            a.click();
+            document.body.removeChild(a);
+            URL.revokeObjectURL(url);
+        }
+
+        // Smooth scrolling for table of contents links
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    target.scrollIntoView({
+                        behavior: 'smooth',
+                        block: 'start'
+                    });
+                }
+            });
+        });
+    </script>
+</body>
+</html>

@@ -1,0 +1,411 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>ETL & ELT with BigQuery — Detailed Notes (Week 3)</title>
+  <style>
+    :root {
+      --bg: #0b1220;
+      --panel: #121a2b;
+      --muted: #9fb3c8;
+      --text: #e6eef8;
+      --accent: #5eead4;
+      --accent-2: #93c5fd;
+      --danger: #fca5a5;
+      --ok: #86efac;
+      --warn: #fde68a;
+      --code: #0e172a;
+      --border: rgba(255,255,255,0.08);
+    }
+    * { box-sizing: border-box; }
+    body {
+      margin: 0;
+      font-family: ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, "Helvetica Neue", Arial;
+      color: var(--text);
+      background: linear-gradient(180deg, #0b1220 0%, #0a1020 100%);
+      line-height: 1.6;
+    }
+    .container {
+      display: grid;
+      grid-template-columns: 280px 1fr;
+      min-height: 100vh;
+    }
+    nav {
+      position: sticky;
+      top: 0;
+      height: 100vh;
+      overflow-y: auto;
+      background: var(--panel);
+      border-right: 1px solid var(--border);
+      padding: 20px 16px;
+    }
+    nav h2 { font-size: 18px; margin: 0 0 12px 0; color: var(--accent); }
+    nav a {
+      display: block;
+      color: var(--muted);
+      text-decoration: none;
+      padding: 8px 10px;
+      border-radius: 10px;
+      margin-bottom: 6px;
+      border: 1px solid transparent;
+    }
+    nav a:hover { color: var(--text); background: rgba(94,234,212,0.06); border-color: var(--border);}
+    main { padding: 28px; }
+    header { display:flex; align-items:center; justify-content:space-between; gap:16px; flex-wrap: wrap; }
+    header h1 { font-size: 26px; margin: 0; color: var(--accent-2);}
+    header .meta { color: var(--muted); font-size: 14px;}
+    section { background: rgba(255,255,255,0.03); border: 1px solid var(--border); border-radius: 14px; padding: 20px; margin: 18px 0 28px; }
+    section h2 { margin-top: 0; color: var(--accent);}
+    h3 { color: #c7d2fe; }
+    .grid-2 { display:grid; grid-template-columns: 1fr 1fr; gap:16px; }
+    .card { background: var(--panel); border:1px solid var(--border); border-radius:12px; padding:16px;}
+    .tag { display:inline-block; padding:2px 8px; border:1px solid var(--border); border-radius:999px; margin-right:6px; font-size:12px; color:var(--muted);}
+    .badge { padding:2px 8px; border-radius:999px; font-size:12px; }
+    .ok { background: rgba(134,239,172,0.15); color: var(--ok); border:1px solid rgba(134,239,172,0.35);}
+    .warn { background: rgba(253,230,138,0.12); color: var(--warn); border:1px solid rgba(253,230,138,0.35);}
+    .danger { background: rgba(252,165,165,0.12); color: var(--danger); border:1px solid rgba(252,165,165,0.35);}
+    code, pre { font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, "Liberation Mono", monospace; }
+    pre {
+      background: var(--code);
+      color: #d1e7ff;
+      border-radius: 10px;
+      padding: 14px;
+      overflow-x: auto;
+      border: 1px solid rgba(255,255,255,0.08);
+    }
+    table { width:100%; border-collapse: collapse; }
+    th, td { padding:10px 12px; border-bottom:1px dashed var(--border); vertical-align: top; }
+    th { text-align:left; color:#cbd5e1; }
+    details summary { cursor: pointer; font-weight: 600; }
+    .note { border-left:4px solid var(--accent); padding:10px 12px; background: rgba(94,234,212,0.06); }
+    .quiz li { margin: 8px 0; }
+    footer { color: var(--muted); padding: 24px 10px; text-align: center;}
+    @media (max-width: 900px){
+      .container { grid-template-columns: 1fr; }
+      nav { position: relative; height: auto;}
+    }
+    @media print {
+      nav { display:none; }
+      body { background:#fff; color:#000; }
+      section { page-break-inside: avoid; }
+    }
+  </style>
+</head>
+<body>
+<div class="container">
+  <nav>
+    <h2>Week 3 — Index</h2>
+    <a href="#etl-overview">ETL Overview</a>
+    <a href="#elt-overview">ELT Overview</a>
+    <a href="#bigquery-connections">BigQuery Connections</a>
+    <a href="#building-pipelines">Building ETL/ELT Processes</a>
+    <a href="#review">Review & Checklist</a>
+    <a href="#assignment">Week 3 Assignment</a>
+    <a href="#glossary">Glossary</a>
+    <a href="#references">References & Extras</a>
+  </nav>
+  <main>
+    <header>
+      <h1>ETL & ELT with BigQuery — Detailed Notes (Week 3)</h1>
+      <div class="meta">Prepared: 2025-11-08 10:06 • Author: ChatGPT (ItTechGenie coach style)</div>
+    </header>
+
+    <section id="etl-overview">
+      <h2>ETL Overview</h2>
+      <p><b>ETL</b> (Extract → Transform → Load) is a data integration pattern where data is <i>transformed before</i> loading into the target warehouse.</p>
+
+      <div class="grid-2">
+        <div class="card">
+          <h3>When ETL fits best</h3>
+          <ul>
+            <li>Complex business rules that require controlled compute (e.g., Spark/Dataproc) before landing.</li>
+            <li>Targets that prefer curated, schema-conformed data.</li>
+            <li>Cost control by running heavy transforms on cheaper compute outside the warehouse.</li>
+            <li>Regulatory constraints: sensitive columns must be masked/anonymized before the warehouse.</li>
+          </ul>
+        </div>
+        <div class="card">
+          <h3>Typical ETL Stack</h3>
+          <p class="tag">Sources: APIs, DBs, Files</p>
+          <p class="tag">Extract: Fivetran, ADF, Dataflow</p>
+          <p class="tag">Transform: Dataproc/Spark, dbt-core (pre‑stage)</p>
+          <p class="tag">Load: Cloud Storage → BigQuery</p>
+        </div>
+      </div>
+
+      <h3>High‑level flow</h3>
+      <pre>[Source Systems] --> [Extractor] --> [Transform Engine] --> [Validated Files/Tables] --> [BigQuery]</pre>
+
+      <h3>Pros & Cons</h3>
+      <table>
+        <thead><tr><th>Aspect</th><th>ETL</th></tr></thead>
+        <tbody>
+          <tr><td>Latency</td><td>Usually batch; micro‑batch possible.</td></tr>
+          <tr><td>Transform location</td><td>Outside warehouse (Spark, Beam, code).</td></tr>
+          <tr><td>Governance</td><td class="ok">Strong control before landing in BQ.</td></tr>
+          <tr><td>Ops complexity</td><td class="warn">More moving parts to manage.</td></tr>
+        </tbody>
+      </table>
+    </section>
+
+    <section id="elt-overview">
+      <h2>ELT Overview</h2>
+      <p><b>ELT</b> (Extract → Load → Transform) loads raw data to the warehouse first and performs transformations <i>inside</i> the warehouse using SQL/warehouse compute.</p>
+
+      <div class="grid-2">
+        <div class="card">
+          <h3>When ELT fits best</h3>
+          <ul>
+            <li>BigQuery-centric analytics with strong SQL skills and dbt.</li>
+            <li>Need for fast ingestion: land raw data quickly, transform later.</li>
+            <li>Desire for time‑travel, reproducible models, and lineage in one place.</li>
+            <li>Lower data movement and simplified architecture.</li>
+          </ul>
+        </div>
+        <div class="card">
+          <h3>Typical ELT Stack</h3>
+          <p class="tag">Extract/Load: Fivetran, Stitch, ADF, custom</p>
+          <p class="tag">Storage: BigQuery Staging (RAW)</p>
+          <p class="tag">Transform: BigQuery SQL, dbt, Dataform</p>
+        </div>
+      </div>
+
+      <h3>Reference layers</h3>
+      <ul>
+        <li><b>RAW</b>: exactly as received (landing/staging)</li>
+        <li><b>BRONZE</b>: lightly cleaned, typed</li>
+        <li><b>SILVER</b>: conformed, joined facts & dims</li>
+        <li><b>GOLD</b>: business‑ready marts, KPIs</li>
+      </ul>
+
+      <h3>Example ELT SQL</h3>
+      <pre>-- 1) Create staging table
+CREATE OR REPLACE TABLE raw.sales_json AS
+SELECT * FROM EXTERNAL_QUERY(...);
+
+-- 2) Clean & type to SILVER
+CREATE OR REPLACE TABLE silver.sales AS
+SELECT
+  CAST(JSON_VALUE(item, '$.order_id') AS STRING) AS order_id,
+  CAST(JSON_VALUE(item, '$.ts') AS TIMESTAMP)  AS ts,
+  CAST(JSON_VALUE(item, '$.amount') AS NUMERIC) AS amount
+FROM raw.sales_json;
+
+-- 3) Build GOLD fact table using MERGE
+MERGE gold.fact_sales T
+USING (
+  SELECT order_id, DATE(ts) AS order_date, amount FROM silver.sales
+) S
+ON T.order_id = S.order_id
+WHEN MATCHED THEN UPDATE SET amount = S.amount, order_date = S.order_date
+WHEN NOT MATCHED THEN INSERT (order_id, order_date, amount) VALUES (S.order_id, S.order_date, S.amount);</pre>
+
+      <h3>Pros & Cons</h3>
+      <table>
+        <thead><tr><th>Aspect</th><th>ELT</th></tr></thead>
+        <tbody>
+          <tr><td>Latency</td><td class="ok">Very fast ingestion; transform on schedule.</td></tr>
+          <tr><td>Transform location</td><td>Inside BigQuery using SQL/UDTFs/Stored Procedures.</td></tr>
+          <tr><td>Governance</td><td class="warn">Raw data lands first — use access controls.</td></tr>
+          <tr><td>Cost</td><td>Pay for warehouse compute only once; simple ops.</td></tr>
+        </tbody>
+      </table>
+    </section>
+
+    <section id="bigquery-connections">
+      <h2>BigQuery Connections</h2>
+      <p>Ways to connect, ingest, and query from BigQuery securely.</p>
+
+      <div class="grid-2">
+        <div class="card">
+          <h3>Authentication Options</h3>
+          <ul>
+            <li><b>Application Default Credentials (ADC)</b>: best for code running on GCP (Cloud Run, GCE, Composer).</li>
+            <li><b>Service Account JSON</b>: local dev/CI; keep secrets in Secret Manager.</li>
+            <li><b>OAuth</b>: interactive desktop usage (bq CLI, notebooks).</li>
+          </ul>
+        </div>
+        <div class="card">
+          <h3>Ingestion Paths</h3>
+          <ul>
+            <li><b>Cloud Storage → BigQuery</b> (load jobs / auto‑detect schema)</li>
+            <li><b>Streaming inserts</b> (API/SDK)</li>
+            <li><b>External tables</b> (GCS, Drive)</li>
+            <li><b>Federated queries</b> (Cloud SQL, AlloyDB, Bigtable)</li>
+            <li><b>Connectors</b> (Dataflow templates, Datastream CDC)</li>
+          </ul>
+        </div>
+      </div>
+
+      <h3>Python quickstart (local dev)</h3>
+      <pre># pip install google-cloud-bigquery
+from google.cloud import bigquery
+client = bigquery.Client()  # uses ADC or env GOOGLE_APPLICATION_CREDENTIALS
+
+sql = "SELECT current_timestamp() as now, 'Hello BigQuery' as msg"
+print(list(client.query(sql))[0])</pre>
+
+      <h3>bq CLI</h3>
+      <pre># Auth once
+gcloud auth application-default login
+
+# Create dataset & table
+bq --location=US mk -d demo_ds
+bq query --use_legacy_sql=false "CREATE TABLE demo_ds.t(id INT64, name STRING)"
+
+# Load CSV from Cloud Storage
+bq load --autodetect --source_format=CSV demo_ds.t gs://my-bucket/sample.csv</pre>
+
+      <h3>External Table (GCS)</h3>
+      <pre>CREATE OR REPLACE EXTERNAL TABLE raw.ext_orders
+OPTIONS (
+  format = 'CSV',
+  uris = ['gs://my-bucket/orders/*.csv'],
+  skip_leading_rows = 1
+);</pre>
+
+      <div class="note">
+        <b>Tip:</b> For JDBC/ODBC tools (Power BI, DBeaver), use the official Google drivers and configure service-account auth or OAuth.
+      </div>
+    </section>
+
+    <section id="building-pipelines">
+      <h2>Building ETL/ELT Processes</h2>
+      <p>Blueprints to go from raw sources to business-ready marts.</p>
+
+      <div class="grid-2">
+        <div class="card">
+          <h3>Batch ETL (Spark/Dataflow)</h3>
+          <ol>
+            <li>Ingest files to GCS (landing).</li>
+            <li>Cleanse/Validate via Dataflow (Apache Beam) or Dataproc Spark.</li>
+            <li>Write Parquet to curated GCS path.</li>
+            <li>Load into BigQuery <i>silver</i> tables.</li>
+            <li>Schedule via Cloud Composer / Cloud Scheduler + Pub/Sub.</li>
+          </ol>
+        </div>
+        <div class="card">
+          <h3>ELT with dbt/Dataform (BigQuery‑native)</h3>
+          <ol>
+            <li>Load raw to <code>raw.*</code> tables (Fivetran/ADF/Stream).</li>
+            <li>Use dbt models: <code>raw → silver → gold</code>.</li>
+            <li>Leverage <code>MERGE</code>, <code>PARTITION</code>, <code>CLUSTER</code>.</li>
+            <li>Orchestrate dbt via Composer or Cloud Build.</li>
+            <li>Document + test with dbt tests & exposures.</li>
+          </ol>
+        </div>
+      </div>
+
+      <h3>Minimal Architecture (SVG)</h3>
+      <svg width="100%" height="140" xmlns="http://www.w3.org/2000/svg">
+        <defs>
+          <linearGradient id="g" x1="0" x2="1">
+            <stop offset="0%" stop-color="#5eead4"/>
+            <stop offset="100%" stop-color="#93c5fd"/>
+          </linearGradient>
+        </defs>
+        <rect x="10" y="20" width="180" height="60" rx="10" fill="none" stroke="url(#g)"/>
+        <text x="20" y="55" fill="#e6eef8">Sources (DB/API/Files)</text>
+
+        <rect x="230" y="20" width="160" height="60" rx="10" fill="none" stroke="url(#g)"/>
+        <text x="240" y="55" fill="#e6eef8">GCS (Landing)</text>
+
+        <rect x="420" y="20" width="170" height="60" rx="10" fill="none" stroke="url(#g)"/>
+        <text x="430" y="55" fill="#e6eef8">Transform (Beam/Spark)</text>
+
+        <rect x="620" y="20" width="160" height="60" rx="10" fill="none" stroke="url(#g)"/>
+        <text x="630" y="55" fill="#e6eef8">BigQuery (RAW→GOLD)</text>
+
+        <line x1="190" y1="50" x2="230" y2="50" stroke="url(#g)" stroke-width="2"/>
+        <line x1="390" y1="50" x2="420" y2="50" stroke="url(#g)" stroke-width="2"/>
+        <line x1="590" y1="50" x2="620" y2="50" stroke="url(#g)" stroke-width="2"/>
+      </svg>
+
+      <h3>Quality & Governance</h3>
+      <ul>
+        <li>Schema evolution strategy (nullable adds, versioned models).</li>
+        <li>Data quality checks (Great Expectations/dbt tests).</li>
+        <li>PII handling: tokenize, mask, or row‑level security.</li>
+        <li>Cost controls: partitioning, clustering, materialized views.</li>
+      </ul>
+
+      <h3>Common MERGE pattern</h3>
+      <pre>MERGE target T
+USING source S
+ON T.pk = S.pk
+WHEN MATCHED AND TO_JSON_STRING(T) != TO_JSON_STRING(S) THEN
+  UPDATE SET col1 = S.col1, col2 = S.col2, updated_at = CURRENT_TIMESTAMP()
+WHEN NOT MATCHED THEN
+  INSERT (pk, col1, col2, created_at) VALUES (S.pk, S.col1, S.col2, CURRENT_TIMESTAMP());</pre>
+    </section>
+
+    <section id="review">
+      <h2>Review & Checklist</h2>
+      <ul>
+        <li>Can you explain <b>ETL vs ELT</b> and when to pick each?</li>
+        <li>Have you created a <b>BigQuery dataset</b> and loaded a file?</li>
+        <li>Do you know how to <b>authenticate</b> (ADC, SA JSON, OAuth)?</li>
+        <li>Can you write a <b>MERGE</b> to upsert into a fact table?</li>
+        <li>Did you set up <b>partitions</b> and <b>clusters</b> to control cost?</li>
+      </ul>
+
+      <h3>Quick Quiz</h3>
+      <ol class="quiz">
+        <li>Name two scenarios where ETL is preferable to ELT.</li>
+        <li>What’s the difference between <code>EXTERNAL TABLE</code> and a normal BQ table?</li>
+        <li>Which auth method is recommended for Cloud Run?</li>
+        <li>How would you schedule a daily dbt run on GCP?</li>
+      </ol>
+    </section>
+
+    <section id="assignment">
+      <h2>Week 3 Assignment (Hands‑on)</h2>
+      <ol>
+        <li>Create dataset <code>week3_lab</code> in BigQuery.</li>
+        <li>Upload <code>orders.csv</code> to GCS and build an <b>external table</b> from it.</li>
+        <li>Create a <b>silver</b> table with typed columns and basic cleansing.</li>
+        <li>Design a <b>gold</b> mart with <code>MERGE</code> from silver.</li>
+        <li>Partition the gold table by <code>order_date</code> and add a cluster on <code>customer_id</code>.</li>
+        <li>Answer: total revenue, top 5 products, revenue by state per month.</li>
+      </ol>
+
+      <h3>Verification Queries</h3>
+      <pre>-- Revenue by month
+SELECT DATE_TRUNC(order_date, MONTH) AS mth, SUM(amount) AS revenue
+FROM gold.fact_sales
+GROUP BY mth ORDER BY mth;
+
+-- Top 5 products
+SELECT product_id, SUM(amount) AS sales
+FROM gold.fact_sales
+GROUP BY product_id ORDER BY sales DESC LIMIT 5;</pre>
+    </section>
+
+    <section id="glossary">
+      <h2>Glossary</h2>
+      <table>
+        <tr><th>Term</th><th>Meaning</th></tr>
+        <tr><td>Landing Zone</td><td>Raw file area, usually in Cloud Storage.</td></tr>
+        <tr><td>Partition</td><td>Physically splits table by date or integer range to prune scans.</td></tr>
+        <tr><td>Cluster</td><td>Sorts data by chosen columns to speed filters/joins.</td></tr>
+        <tr><td>CDC</td><td>Change Data Capture (e.g., Datastream from MySQL → BQ).</td></tr>
+        <tr><td>dbt</td><td>Data build tool for modular SQL transformations.</td></tr>
+      </table>
+    </section>
+
+    <section id="references">
+      <h2>References & Extras</h2>
+      <ul>
+        <li>Google Cloud docs: BigQuery, Dataflow, Dataproc, Composer.</li>
+        <li>Design pattern: RAW → SILVER → GOLD (a.k.a. Medallion).</li>
+        <li>Best practice: use separate projects for dev/stage/prod with IAM boundaries.</li>
+      </ul>
+      <p class="note">Export: This document is print‑friendly and can be saved as PDF from your browser. You can also copy it into your LMS or convert to Word if needed.</p>
+    </section>
+
+    <footer>© 2025 ETL/ELT Week 3 Notes • Built for fast classroom use.</footer>
+  </main>
+</div>
+</body>
+</html>
